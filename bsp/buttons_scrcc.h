@@ -27,9 +27,6 @@ Constants / Definitions
 #define BUTTON_INIT_MSG_TIMEOUT         (u32)1000     /* Time in ms for init message to send */
 #define BUTTON_DEBOUNCE_TIME            (u32)25       /* Time in ms for button debouncing */
 
-#define TOTAL_BUTTONS                   (u8)4         /* Total number of buttons in the system */
-
-
 /***********************************************************************************************************************
 Function Declarations
 ***********************************************************************************************************************/

@@ -75,12 +75,27 @@ Includes
 #include "buttons_scrcc.h"
 
 /* Application header files */
-
+#include "anttt.h"
 
 /**********************************************************************************************************************
 !!!!! External device peripheral assignments
 ***********************************************************************************************************************/
 
+
+/*----------------------------------------------------------------------------------------------------------------------
+%BUTTON% Button Configuration                                                                                                  
+------------------------------------------------------------------------------------------------------------------------*/
+
+#define TOTAL_BUTTONS         (u8)4       /* Total number of Buttons in the system */
+
+#define BUTTON_F               (u32)0
+#define BUTTON_B               (u32)1
+#define BUTTON_L               (u32)2
+#define BUTTON_R               (u32)3
+
+/* All buttons on each port must be ORed together here: set to 0 if no buttons on the port */
+#define GPIOA_BUTTONS         (u32)( PA_17_BUTTON_F )
+#define GPIOB_BUTTONS         (u32)( PB_00_BUTTON_B | PB_01_BUTTON_L | PB_02_BUTTON_R )
 
 
 #endif /* __CONFIG_H */

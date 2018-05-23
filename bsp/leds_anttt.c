@@ -276,7 +276,7 @@ void LedInitialize(void)
   
   LedNumberType aeLedSequenceDirections[] = {FRONT_LED, RIGHT_LED, BACK_LED, LEFT_LED};
   
-  for(u8 n=0; i<3; i++){
+  for(u8 n=0; n<3; n++){
     for(u8 i=0; i<4; i++){
       LedOn(aeLedSequenceDirections[i]);
       for(u32 j = 0; j < 200000; j++);
@@ -301,7 +301,7 @@ void LedInitialize(void)
   LedOn(AWAY8);
 
   while(1);
-#endif
+
 
   LedOff(HOME5);
   LedOn(AWAY5);
@@ -323,7 +323,7 @@ void LedInitialize(void)
 
   }
 
-#if 0
+
   /* Sequentially light up the LEDs */
   for(u8 i = 0; i < 18; i++)
   {

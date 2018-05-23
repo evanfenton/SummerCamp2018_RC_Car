@@ -76,7 +76,6 @@ static bool Button_abNewPress[TOTAL_BUTTONS];               /* Flags to indicate
 /* Add all of the GPIO pin names for the buttons in the system.  
 The order of the definitions below must match the order of the definitions provided in configuration.h */ 
 
-#ifdef EIE1
 static const u32 Button_au32ButtonPins[TOTAL_BUTTONS] = 
 {
   PA_17_BUTTON0, PB_00_BUTTON1, PB_01_BUTTON2, PB_02_BUTTON3
@@ -90,45 +89,6 @@ static ButtonConfigType Buttons_asArray[TOTAL_BUTTONS] =
  {BUTTON_ACTIVE_LOW, BUTTON_PORTB}, /* BUTTON2  */
  {BUTTON_ACTIVE_LOW, BUTTON_PORTB}, /* BUTTON3  */
 };   
-#endif /* EIE1 */
-
-#ifdef MPGL2
-static const u32 Button_au32ButtonPins[TOTAL_BUTTONS] = 
-{
-  PA_17_BUTTON0, PB_00_BUTTON1
-};
-
-/* Control array for all buttons in system initialized for ButtonInitialize().  Array values correspond to ButtonConfigType fields: 
-     eActiveState       ePort                   */
-static ButtonConfigType Buttons_asArray[TOTAL_BUTTONS] = 
-{{BUTTON_ACTIVE_LOW, BUTTON_PORTA}, /* BUTTON0  */
- {BUTTON_ACTIVE_LOW, BUTTON_PORTB} /* BUTTON1  */
-};   
-#endif /* MPGL2 */
-
-
-
-
-
-#ifdef SCRCC
-static const u32 Button_au32ButtonPins[TOTAL_BUTTONS] = 
-{
-  PA_17_BUTTON_F, PB_00_BUTTON_B, PB_01_BUTTON_L, PB_02_BUTTON_R
-};
-
-/* Control array for all buttons in system initialized for ButtonInitialize().  Array values correspond to ButtonConfigType fields: 
-     eActiveState       ePort                   */
-static ButtonConfigType Buttons_asArray[TOTAL_BUTTONS] = 
-{{BUTTON_ACTIVE_LOW, BUTTON_PORTA}, /* BUTTON_F  */
- {BUTTON_ACTIVE_LOW, BUTTON_PORTB}, /* BUTTON_B */
- {BUTTON_ACTIVE_LOW, BUTTON_PORTB}, /* BUTTON_L */
- {BUTTON_ACTIVE_LOW, BUTTON_PORTB}, /* BUTTON_R */
-};   
-#endif /* SCRCC */
-
-
-
-
 
 
 /************ EDIT BOARD-SPECIFIC GPIO DEFINITIONS ABOVE ***************/
