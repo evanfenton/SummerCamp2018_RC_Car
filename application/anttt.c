@@ -62,8 +62,10 @@ Promises:
 void AntttInitialize(void)
 {
   
-  /* Fire up the LEDs */
-  
+  LedOff(FRONT_LED);
+  LedOff(BACK_LED);
+  LedOff(RIGHT_LED);
+  LedOff(LEFT_LED);
 
 } /* end AntttInitialize() */
 
@@ -85,7 +87,8 @@ Function: AntttSM_Idle
 */
 void AntttSM_Idle(void)
 {
-
+  
+  
 } /* end AntttInitialize() */
 
 

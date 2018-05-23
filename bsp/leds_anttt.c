@@ -9,7 +9,7 @@ regular 1ms calls to LedUpdate().
 
 ------------------------------------------------------------------------------------------------------------------------
 API:
-LedNumberType: BLUE, GREEN, YELLOW, RED
+LedNumberType: FRONT_LED, BACK_LED, LEFT_LED, RIGHT_LED
 
 LedRateType: LED_0_5HZ, LED_1HZ, LED_2HZ, LED_4HZ, LED_8HZ, 
              LED_PWM_0, LED_PWM_5, ..., LED_PWM_100
@@ -20,23 +20,23 @@ PWM level. However, decrementing past LED_PWM_0 or incrementing past LED_PWM_100
 Public:
 void LedOn(LedNumberType eLED_)
 Turn the specified LED on. LED response is immediate.
-e.g. LedOn(BLUE);
+e.g. LedOn(FRONT_LED);
 
 void LedOff(LedNumberType eLED_)
 Turn the specified LED off. LED response is immediate.
-e.g. LedOff(BLUE);
+e.g. LedOff(FRONT_LED);
 
 void LedToggle(LedNumberType eLED_)
 Toggle the specified LED.  LED response is immediate.
-e.g. LedToggle(BLUE);
+e.g. LedToggle(FRONT_LED);
 
 void LedPWM(LedNumberType eLED_, LedRateType ePwmRate_)
 Sets up an LED for PWM mode.  PWM mode requries the main loop to be running at 1ms period.
-e.g. LedPWM(BLUE, LED_PWM_5);
+e.g. LedPWM(FRONT_LED, LED_PWM_5);
 
 void LedBlink(LedNumberType eLED_, LedRateType eBlinkRate_)
 Sets an LED to BLINK mode.  BLINK mode requries the main loop to be running at 1ms period.
-e.g. LedBlink(BLUE, LED_1HZ);
+e.g. LedBlink(FRONT_LED, LED_1HZ);
 
 Protected:
 void LedInitialize(void)
@@ -274,12 +274,23 @@ void LedInitialize(void)
   LedNumberType aeLedSequenceHome[] = {HOME1, HOME2, HOME3, HOME6, HOME9, HOME8, HOME7, HOME4};
   LedNumberType aeLedSequenceAway[] = {AWAY1, AWAY4, AWAY7, AWAY8, AWAY9, AWAY6, AWAY3, AWAY2};
   
+  LedNumberType aeLedSequenceDirections[] = {FRONT_LED, RIGHT_LED, BACK_LED, LEFT_LED};
+  
+  for(u8 n=0; i<3; i++){
+    for(u8 i=0; i<4; i++){
+      LedOn(aeLedSequenceDirections[i]);
+      for(u32 j = 0; j < 200000; j++);
+      LedOff(aeLedSequenceDirections[i]);
+    }
+  }
+ 
+#if 0 
   /* All status lights on */
   LedOn(STATUS_RED);
   LedOn(STATUS_YLW);
   LedOn(STATUS_GRN);
 
-#if 0 /* Picture mode */
+  /* Picture mode */
   LedOn(HOME1);
   LedOn(HOME5);
   LedOn(HOME7);

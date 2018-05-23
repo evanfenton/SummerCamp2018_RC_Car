@@ -54,6 +54,11 @@ typedef struct
 ******************************************************************************/
 #define TOTAL_LEDS            (u8)21        /* Total number of LEDs in the system */
 
+                                            /* for RC car controller LED's */
+#define FRONT_LED              HOME2        
+#define BACK_LED               HOME8
+#define LEFT_LED               HOME4
+#define RIGHT_LED              HOME6
 
 
 /******************************************************************************

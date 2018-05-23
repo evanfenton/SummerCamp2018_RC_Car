@@ -56,6 +56,7 @@ void main(void)
 
   /* Driver initialization */
   LedInitialize();
+  ButtonInitialize();
   //AntInitialize();
 
   /* Application initialization */
@@ -70,6 +71,8 @@ void main(void)
   {
     LedUpdate();
     
+    ButtonRunActiveState();
+    AntttSM_Idle();
         
     /* System sleep*/
     SystemSleep();

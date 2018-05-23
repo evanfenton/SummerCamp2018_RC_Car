@@ -72,6 +72,7 @@ Includes
 
 /* Driver header files */
 #include "leds_anttt.h" 
+#include "buttons_scrcc.h"
 
 /* Application header files */
 
