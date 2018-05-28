@@ -19,6 +19,7 @@ volatile u32 G_u32SystemFlags = 0;                     /* Global system flags */
 extern volatile u32 G_u32SystemTime1ms;                /* From board-specific source file */
 extern volatile u32 G_u32SystemTime1s;                 /* From board-specific source file */
 
+extern fnCode_type SCRCC_SM;
 
 /***********************************************************************************************************************
 Global variable definitions with scope limited to this local application.
@@ -60,7 +61,7 @@ void main(void)
   //AntInitialize();
 
   /* Application initialization */
-  AntttInitialize();
+  ScrccInitialize();
   
   /* Exit initialization */
   G_u32SystemFlags &= ~_SYSTEM_INITIALIZING;
@@ -72,7 +73,7 @@ void main(void)
     LedUpdate();
     
     ButtonRunActiveState();
-    AntttSM_Idle();
+    Scrcc_SM();
         
     /* System sleep*/
     SystemSleep();

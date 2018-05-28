@@ -28,12 +28,23 @@ Function Declarations
 /* Protected functions                                                                                                */
 /*--------------------------------------------------------------------------------------------------------------------*/
 void AntttInitialize(void);
-void AntttSM_Idle(void);
+
+void ScrccInitialize(void);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Private functions                                                                                                  */
 /*--------------------------------------------------------------------------------------------------------------------*/
 
+static void Scrcc_Forward(void);
+static void Scrcc_Backward(void);
+static void Scrcc_LeftTurn(void);
+static void Scrcc_RightTurn(void);
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/* SM functions                                                                                                  */
+/*--------------------------------------------------------------------------------------------------------------------*/
+static void ScrccSM_Idle(void);
+static void ScrccSM_Active(void);
 
 
 #endif /* __ANTTT_H */

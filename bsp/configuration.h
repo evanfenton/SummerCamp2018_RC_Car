@@ -72,7 +72,7 @@ Includes
 
 /* Driver header files */
 #include "leds_anttt.h" 
-#include "buttons_scrcc.h"
+#include "buttons.h"
 
 /* Application header files */
 #include "anttt.h"
@@ -86,12 +86,7 @@ Includes
 %BUTTON% Button Configuration                                                                                                  
 ------------------------------------------------------------------------------------------------------------------------*/
 
-#define TOTAL_BUTTONS         (u8)4       /* Total number of Buttons in the system */
-
-#define BUTTON_F               (u32)0
-#define BUTTON_B               (u32)1
-#define BUTTON_L               (u32)2
-#define BUTTON_R               (u32)3
+//#define TOTAL_BUTTONS         (u8)4       /* Total number of Buttons in the system */
 
 /* All buttons on each port must be ORed together here: set to 0 if no buttons on the port */
 #define GPIOA_BUTTONS         (u32)( PA_17_BUTTON_F )

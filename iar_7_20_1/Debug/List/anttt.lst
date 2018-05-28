@@ -1,0 +1,608 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        28/May/2018  09:17:42
+# Copyright 1999-2014 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\application\anttt.c
+#    Command line =  
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\application\anttt.c
+#        -lC
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\List\
+#        -o
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\Obj\
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M0 -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench
+#        7.0\arm\INC\c\DLib_Config_Normal.h" -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\bsp\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\application\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Include\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Include\ant\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Include\app_common\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Source\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Source\app_common\
+#        -On -I "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        7.0\arm\CMSIS\Include\"
+#    List file    =  
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\List\anttt.lst
+#    Object file  =  
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\Obj\anttt.o
+#
+###############################################################################
+
+C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\application\anttt.c
+      1          /**********************************************************************************************************************
+      2          File: anttt.c                                                                
+      3          
+      4          Description:
+      5          Implements TIC-TAC-TOE using data input from ANT or BLE.
+      6          
+      7          
+      8          
+      9          **********************************************************************************************************************/
+     10          
+     11          #include "configuration.h"
+     12          
+     13          /***********************************************************************************************************************
+     14          Global variable definitions with scope across entire project.
+     15          All Global variable names shall start with "G_xxAnttt"
+     16          ***********************************************************************************************************************/
+     17          /* New variables */
+
+   \                                 In section .bss, align 4
+     18          u32 G_u32AntttFlags;                                     /* Global state flags */
+   \                     G_u32AntttFlags:
+   \   00000000                      DS8 4
+     19          
+
+   \                                 In section .bss, align 4
+     20          u32 G_u32ScrccFlags;                                     /* Global state flags */
+   \                     G_u32ScrccFlags:
+   \   00000000                      DS8 4
+
+   \                                 In section .bss, align 4
+     21          fnCode_type SCRCC_SM;
+   \                     SCRCC_SM:
+   \   00000000                      DS8 4
+     22          
+     23          /*--------------------------------------------------------------------------------------------------------------------*/
+     24          /* Existing variables (defined in other files -- should all contain the "extern" keyword) */
+     25          extern volatile u32 G_u32SystemFlags;                  /* From main.c */
+     26          
+     27          extern volatile u32 G_u32SystemTime1ms;                /* From board-specific source file */
+     28          extern volatile u32 G_u32SystemTime1s;                 /* From board-specific source file */
+     29          
+     30          
+     31          /***********************************************************************************************************************
+     32          Global variable definitions with scope limited to this local application.
+     33          Variable names shall start with "Anttt_" and be declared as static.
+     34          ***********************************************************************************************************************/
+     35          static u32 Anttt_u32Timeout;                             /* Timeout counter used across states */
+                            ^
+Warning[Pe177]: variable "Anttt_u32Timeout" was declared but never referenced
+     36          
+     37          static u32 Anttt_u32CyclePeriod;                         /* Current base time for Anttt modulation */
+                            ^
+Warning[Pe177]: variable "Anttt_u32CyclePeriod" was declared but never
+          referenced
+     38          
+     39          /**********************************************************************************************************************
+     40          Function Definitions
+     41          **********************************************************************************************************************/
+     42          
+     43          /*--------------------------------------------------------------------------------------------------------------------*/
+     44          /* Public functions                                                                                                   */
+     45          /*--------------------------------------------------------------------------------------------------------------------*/
+     46          
+     47          
+     48          
+     49          /*--------------------------------------------------------------------------------------------------------------------*/
+     50          /* Protected functions                                                                                                */
+     51          /*--------------------------------------------------------------------------------------------------------------------*/
+     52          
+     53          /*--------------------------------------------------------------------------------------------------------------------
+     54          Function: AntttInitialize
+     55          
+     56          Description:
+     57          Initializes the State Machine and its variables.
+     58          
+     59          Requires:
+     60            -
+     61          
+     62          Promises:
+     63            - 
+     64          */
+
+   \                                 In section .text, align 2, keep-with-next
+     65          void AntttInitialize(void)
+     66          {
+     67            
+     68           
+     69          } /* end AntttInitialize() */
+   \                     AntttInitialize: (+1)
+   \   00000000   0x4770             BX       LR               ;; return
+     70          
+     71          
+     72          /*
+     73          Function: ScrccInitialize(void)
+     74          
+     75          Description:
+     76          Initializes the State Machine and its variables.
+     77          
+     78          Requires:
+     79            -
+     80          
+     81          Promises:
+     82            - 
+     83          */
+
+   \                                 In section .text, align 2, keep-with-next
+     84          void ScrccInitialize(void)
+     85          {
+     86            SCRCC_SM = ScrccSM_Idle;
+   \                     ScrccInitialize: (+1)
+   \   00000000   0x....             LDR      R0,??DataTable2
+   \   00000002   0x....             LDR      R1,??DataTable2_1
+   \   00000004   0x6008             STR      R0,[R1, #+0]
+     87            
+     88          } /* end ScrccInitialize(void) */
+   \   00000006   0x4770             BX       LR               ;; return
+     89          
+     90          
+     91          
+     92          /*--------------------------------------------------------------------------------------------------------------------*/
+     93          /* Private functions                                                                                                  */
+     94          /*--------------------------------------------------------------------------------------------------------------------*/
+     95          
+     96          
+     97          /*
+     98          Function: Scrcc_Forward()
+     99          
+    100          Description:
+    101          sends appropriate signals to robot for forward movement
+    102          
+    103          Requires:
+    104            -
+    105          
+    106          Promises:
+    107            - 
+    108          */
+
+   \                                 In section .text, align 2, keep-with-next
+    109          static void Scrcc_Forward(void)
+    110          {
+   \                     Scrcc_Forward: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+    111             LedOn(FRONT_LED);            /* visual confirmation */
+   \   00000002   0x2001             MOVS     R0,#+1
+   \   00000004   0x.... 0x....      BL       LedOn
+    112             LedOff(RIGHT_LED);
+   \   00000008   0x2005             MOVS     R0,#+5
+   \   0000000A   0x.... 0x....      BL       LedOff
+    113             LedOff(BACK_LED);
+   \   0000000E   0x2007             MOVS     R0,#+7
+   \   00000010   0x.... 0x....      BL       LedOff
+    114             LedOff(LEFT_LED);
+   \   00000014   0x2003             MOVS     R0,#+3
+   \   00000016   0x.... 0x....      BL       LedOff
+    115              
+    116             LedPWM(EN_LEFT, LED_PWM_100);              /* turn both motors on */
+   \   0000001A   0x2114             MOVS     R1,#+20
+   \   0000001C   0x2002             MOVS     R0,#+2
+   \   0000001E   0x.... 0x....      BL       LedPWM
+    117             LedPWM(EN_RIGHT, LED_PWM_100);
+   \   00000022   0x2114             MOVS     R1,#+20
+   \   00000024   0x200B             MOVS     R0,#+11
+   \   00000026   0x.... 0x....      BL       LedPWM
+    118              
+    119             LedOff(IN_TOP);              /* signals for forward rotation */
+   \   0000002A   0x2000             MOVS     R0,#+0
+   \   0000002C   0x.... 0x....      BL       LedOff
+    120             LedOn(IN_BOT);
+   \   00000030   0x2009             MOVS     R0,#+9
+   \   00000032   0x.... 0x....      BL       LedOn
+    121              
+    122          } /* end Scrcc_Forward() */
+   \   00000036   0xBD01             POP      {R0,PC}          ;; return
+    123          
+    124          
+    125          /*
+    126          Function: Scrcc_Backward()
+    127          
+    128          Description:
+    129          sends appropriate signals to robot for backward movement
+    130          
+    131          Requires:
+    132            -
+    133          
+    134          Promises:
+    135            - 
+    136          */
+
+   \                                 In section .text, align 2, keep-with-next
+    137          static void Scrcc_Backward(void)
+    138          {
+   \                     Scrcc_Backward: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+    139             LedOn(BACK_LED);             /* visual confirmation */
+   \   00000002   0x2007             MOVS     R0,#+7
+   \   00000004   0x.... 0x....      BL       LedOn
+    140             LedOff(FRONT_LED);
+   \   00000008   0x2001             MOVS     R0,#+1
+   \   0000000A   0x.... 0x....      BL       LedOff
+    141             LedOff(RIGHT_LED);
+   \   0000000E   0x2005             MOVS     R0,#+5
+   \   00000010   0x.... 0x....      BL       LedOff
+    142             LedOff(LEFT_LED);
+   \   00000014   0x2003             MOVS     R0,#+3
+   \   00000016   0x.... 0x....      BL       LedOff
+    143              
+    144             LedPWM(EN_LEFT, LED_PWM_100);              /* turn both motors on */
+   \   0000001A   0x2114             MOVS     R1,#+20
+   \   0000001C   0x2002             MOVS     R0,#+2
+   \   0000001E   0x.... 0x....      BL       LedPWM
+    145             LedPWM(EN_RIGHT, LED_PWM_100);
+   \   00000022   0x2114             MOVS     R1,#+20
+   \   00000024   0x200B             MOVS     R0,#+11
+   \   00000026   0x.... 0x....      BL       LedPWM
+    146              
+    147             LedOn(IN_TOP);               /* signals for backward rotation */
+   \   0000002A   0x2000             MOVS     R0,#+0
+   \   0000002C   0x.... 0x....      BL       LedOn
+    148             LedOff(IN_BOT);
+   \   00000030   0x2009             MOVS     R0,#+9
+   \   00000032   0x.... 0x....      BL       LedOff
+    149              
+    150          } /* end Scrcc_Backward() */
+   \   00000036   0xBD01             POP      {R0,PC}          ;; return
+    151          
+    152          
+    153          /*
+    154          Function: Scrcc_LeftTurn()
+    155          
+    156          Description:
+    157          sends appropriate signals to robot for left turn
+    158          
+    159          Requires:
+    160            -
+    161          
+    162          Promises:
+    163            - 
+    164          */
+
+   \                                 In section .text, align 2, keep-with-next
+    165          static void Scrcc_LeftTurn(void)
+    166          {
+   \                     Scrcc_LeftTurn: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+    167             LedOn(LEFT_LED);              /* visual confirmation */
+   \   00000002   0x2003             MOVS     R0,#+3
+   \   00000004   0x.... 0x....      BL       LedOn
+    168             LedOff(FRONT_LED);
+   \   00000008   0x2001             MOVS     R0,#+1
+   \   0000000A   0x.... 0x....      BL       LedOff
+    169             LedOff(BACK_LED);
+   \   0000000E   0x2007             MOVS     R0,#+7
+   \   00000010   0x.... 0x....      BL       LedOff
+    170             LedOff(RIGHT_LED);
+   \   00000014   0x2005             MOVS     R0,#+5
+   \   00000016   0x.... 0x....      BL       LedOff
+    171              
+    172             LedPWM(EN_LEFT, LED_PWM_0);              /* turn left motor off right motor on */
+   \   0000001A   0x2100             MOVS     R1,#+0
+   \   0000001C   0x2002             MOVS     R0,#+2
+   \   0000001E   0x.... 0x....      BL       LedPWM
+    173             LedPWM(EN_RIGHT, LED_PWM_100);
+   \   00000022   0x2114             MOVS     R1,#+20
+   \   00000024   0x200B             MOVS     R0,#+11
+   \   00000026   0x.... 0x....      BL       LedPWM
+    174              
+    175             LedOff(IN_TOP);               /* signals for forward rotation */
+   \   0000002A   0x2000             MOVS     R0,#+0
+   \   0000002C   0x.... 0x....      BL       LedOff
+    176             LedOn(IN_BOT);
+   \   00000030   0x2009             MOVS     R0,#+9
+   \   00000032   0x.... 0x....      BL       LedOn
+    177              
+    178          } /* end Scrcc_LeftTurn() */
+   \   00000036   0xBD01             POP      {R0,PC}          ;; return
+    179          
+    180          
+    181          /*
+    182          Function: Scrcc_RightTurn()
+    183          
+    184          Description:
+    185          sends appropriate signals to robot for right turn
+    186          
+    187          Requires:
+    188            -
+    189          
+    190          Promises:
+    191            - 
+    192          */
+
+   \                                 In section .text, align 2, keep-with-next
+    193          static void Scrcc_RightTurn(void)
+    194          {
+   \                     Scrcc_RightTurn: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+    195             LedOn(RIGHT_LED);            /* visual confirmation */
+   \   00000002   0x2005             MOVS     R0,#+5
+   \   00000004   0x.... 0x....      BL       LedOn
+    196             LedOff(FRONT_LED);
+   \   00000008   0x2001             MOVS     R0,#+1
+   \   0000000A   0x.... 0x....      BL       LedOff
+    197             LedOff(BACK_LED);
+   \   0000000E   0x2007             MOVS     R0,#+7
+   \   00000010   0x.... 0x....      BL       LedOff
+    198             LedOff(LEFT_LED);
+   \   00000014   0x2003             MOVS     R0,#+3
+   \   00000016   0x.... 0x....      BL       LedOff
+    199              
+    200             LedPWM(EN_LEFT, LED_PWM_100);              /* turn right motor off left motor on */
+   \   0000001A   0x2114             MOVS     R1,#+20
+   \   0000001C   0x2002             MOVS     R0,#+2
+   \   0000001E   0x.... 0x....      BL       LedPWM
+    201             LedPWM(EN_RIGHT, LED_PWM_0);
+   \   00000022   0x2100             MOVS     R1,#+0
+   \   00000024   0x200B             MOVS     R0,#+11
+   \   00000026   0x.... 0x....      BL       LedPWM
+    202              
+    203             LedOff(IN_TOP);              /* signals for forward rotation */
+   \   0000002A   0x2000             MOVS     R0,#+0
+   \   0000002C   0x.... 0x....      BL       LedOff
+    204             LedOn(IN_BOT);
+   \   00000030   0x2009             MOVS     R0,#+9
+   \   00000032   0x.... 0x....      BL       LedOn
+    205              
+    206          } /* end Scrcc_RightTurn() */
+   \   00000036   0xBD01             POP      {R0,PC}          ;; return
+    207          
+    208          
+    209          
+    210          /*--------------------------------------------------------------------------------------------------------------------*/
+    211          /* State Machine definitions                                                                                          */
+    212          /*--------------------------------------------------------------------------------------------------------------------*/
+    213          
+    214          #if 0
+    215          /*--------------------------------------------------------------------------------------------------------------------
+    216          Function: AntttSM_Idle
+    217          */
+    218          static void AntttSM_Idle(void)
+    219          {
+    220            
+    221            if(IsButtonPressed(BUTTON_F)){
+    222              Scrcc_Forward();
+    223            }
+    224            else if(IsButtonPressed(BUTTON_B)){
+    225              Scrcc_Backward();
+    226            }
+    227            else if(IsButtonPressed(BUTTON_L)){
+    228              Scrcc_LeftTurn();
+    229            }
+    230            else if(IsButtonPressed(BUTTON_R)){
+    231              Scrcc_RightTurn();
+    232            }
+    233            else{
+    234              Scrcc_Standby();
+    235            }
+    236            
+    237          } /* end AntttSM_Idle() */
+    238          
+    239          #endif
+    240          
+    241          
+    242          /*
+    243          Function: ScrccSM_Idle(void)
+    244          
+    245          Description:
+    246          robot is waiting for user input
+    247          
+    248          Requires:
+    249            -
+    250          
+    251          Promises:
+    252            - 
+    253          */
+
+   \                                 In section .text, align 2, keep-with-next
+    254          static void ScrccSM_Idle(void)
+    255          {
+   \                     ScrccSM_Idle: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+    256            LedOff(RIGHT_LED);            /* all Led's are off */
+   \   00000002   0x2005             MOVS     R0,#+5
+   \   00000004   0x.... 0x....      BL       LedOff
+    257            LedOff(FRONT_LED);
+   \   00000008   0x2001             MOVS     R0,#+1
+   \   0000000A   0x.... 0x....      BL       LedOff
+    258            LedOff(BACK_LED);
+   \   0000000E   0x2007             MOVS     R0,#+7
+   \   00000010   0x.... 0x....      BL       LedOff
+    259            LedOff(LEFT_LED);
+   \   00000014   0x2003             MOVS     R0,#+3
+   \   00000016   0x.... 0x....      BL       LedOff
+    260             
+    261            LedPWM(EN_LEFT, LED_PWM_0);              /* make sure motors are off */
+   \   0000001A   0x2100             MOVS     R1,#+0
+   \   0000001C   0x2002             MOVS     R0,#+2
+   \   0000001E   0x.... 0x....      BL       LedPWM
+    262            LedPWM(EN_RIGHT, LED_PWM_0);
+   \   00000022   0x2100             MOVS     R1,#+0
+   \   00000024   0x200B             MOVS     R0,#+11
+   \   00000026   0x.... 0x....      BL       LedPWM
+    263            
+    264            ButtonInitialize();
+   \   0000002A   0x.... 0x....      BL       ButtonInitialize
+    265            
+    266            SCRCC_SM = ScrccSM_Active;
+   \   0000002E   0x....             LDR      R0,??DataTable2_2
+   \   00000030   0x....             LDR      R1,??DataTable2_1
+   \   00000032   0x6008             STR      R0,[R1, #+0]
+    267            
+    268          } /* end ScrccSM_Idle(void) */
+   \   00000034   0xBD01             POP      {R0,PC}          ;; return
+    269          
+    270          
+    271          /*
+    272          Function: ScrccSM_Active(void)
+    273          
+    274          Description:
+    275          reacts to user input
+    276          
+    277          Requires:
+    278            -
+    279          
+    280          Promises:
+    281            - 
+    282          */
+
+   \                                 In section .text, align 2, keep-with-next
+    283          static void ScrccSM_Active(void)
+    284          {
+   \                     ScrccSM_Active: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+    285            
+    286            if(IsButtonPressed(BUTTON_F)){
+   \   00000002   0x2002             MOVS     R0,#+2
+   \   00000004   0x.... 0x....      BL       IsButtonPressed
+   \   00000008   0x2800             CMP      R0,#+0
+   \   0000000A   0xD002             BEQ      ??ScrccSM_Active_0
+    287              Scrcc_Forward();
+   \   0000000C   0x.... 0x....      BL       Scrcc_Forward
+   \   00000010   0xE01A             B        ??ScrccSM_Active_1
+    288            }
+    289            else if(IsButtonPressed(BUTTON_B)){
+   \                     ??ScrccSM_Active_0: (+1)
+   \   00000012   0x2008             MOVS     R0,#+8
+   \   00000014   0x.... 0x....      BL       IsButtonPressed
+   \   00000018   0x2800             CMP      R0,#+0
+   \   0000001A   0xD002             BEQ      ??ScrccSM_Active_2
+    290              Scrcc_Backward();
+   \   0000001C   0x.... 0x....      BL       Scrcc_Backward
+   \   00000020   0xE012             B        ??ScrccSM_Active_1
+    291            }
+    292            else if(IsButtonPressed(BUTTON_L)){
+   \                     ??ScrccSM_Active_2: (+1)
+   \   00000022   0x2004             MOVS     R0,#+4
+   \   00000024   0x.... 0x....      BL       IsButtonPressed
+   \   00000028   0x2800             CMP      R0,#+0
+   \   0000002A   0xD002             BEQ      ??ScrccSM_Active_3
+    293              Scrcc_LeftTurn();
+   \   0000002C   0x.... 0x....      BL       Scrcc_LeftTurn
+   \   00000030   0xE00A             B        ??ScrccSM_Active_1
+    294            }
+    295            else if(IsButtonPressed(BUTTON_R)){
+   \                     ??ScrccSM_Active_3: (+1)
+   \   00000032   0x2006             MOVS     R0,#+6
+   \   00000034   0x.... 0x....      BL       IsButtonPressed
+   \   00000038   0x2800             CMP      R0,#+0
+   \   0000003A   0xD002             BEQ      ??ScrccSM_Active_4
+    296              Scrcc_RightTurn();
+   \   0000003C   0x.... 0x....      BL       Scrcc_RightTurn
+   \   00000040   0xE002             B        ??ScrccSM_Active_1
+    297            }
+    298            else{
+    299              SCRCC_SM = ScrccSM_Idle;
+   \                     ??ScrccSM_Active_4: (+1)
+   \   00000042   0x....             LDR      R0,??DataTable2
+   \   00000044   0x....             LDR      R1,??DataTable2_1
+   \   00000046   0x6008             STR      R0,[R1, #+0]
+    300            }
+    301            
+    302          } /* end ScrccSM_Active(void) */
+   \                     ??ScrccSM_Active_1: (+1)
+   \   00000048   0xBD01             POP      {R0,PC}          ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2:
+   \   00000000   0x........         DC32     ScrccSM_Idle
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_1:
+   \   00000000   0x........         DC32     SCRCC_SM
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_2:
+   \   00000000   0x........         DC32     ScrccSM_Active
+    303          
+    304          
+    305          
+    306          /*--------------------------------------------------------------------------------------------------------------------*/
+    307          /* End of File                                                                                                        */
+    308          /*--------------------------------------------------------------------------------------------------------------------*/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   AntttInitialize
+       0   ScrccInitialize
+       8   ScrccSM_Active
+         8   -> IsButtonPressed
+         8   -> Scrcc_Backward
+         8   -> Scrcc_Forward
+         8   -> Scrcc_LeftTurn
+         8   -> Scrcc_RightTurn
+       8   ScrccSM_Idle
+         8   -> ButtonInitialize
+         8   -> LedOff
+         8   -> LedPWM
+       8   Scrcc_Backward
+         8   -> LedOff
+         8   -> LedOn
+         8   -> LedPWM
+       8   Scrcc_Forward
+         8   -> LedOff
+         8   -> LedOn
+         8   -> LedPWM
+       8   Scrcc_LeftTurn
+         8   -> LedOff
+         8   -> LedOn
+         8   -> LedPWM
+       8   Scrcc_RightTurn
+         8   -> LedOff
+         8   -> LedOn
+         8   -> LedPWM
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable2
+       4  ??DataTable2_1
+       4  ??DataTable2_2
+       2  AntttInitialize
+       4  G_u32AntttFlags
+       4  G_u32ScrccFlags
+       4  SCRCC_SM
+       8  ScrccInitialize
+      74  ScrccSM_Active
+      54  ScrccSM_Idle
+      56  Scrcc_Backward
+      56  Scrcc_Forward
+      56  Scrcc_LeftTurn
+      56  Scrcc_RightTurn
+
+ 
+  12 bytes in section .bss
+ 374 bytes in section .text
+ 
+ 374 bytes of CODE memory
+  12 bytes of DATA memory
+
+Errors: none
+Warnings: 2

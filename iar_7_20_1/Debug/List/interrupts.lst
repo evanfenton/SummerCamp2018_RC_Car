@@ -1,0 +1,186 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        28/May/2018  09:17:43
+# Copyright 1999-2014 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\interrupts.c
+#    Command line =  
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\interrupts.c
+#        -lC
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\List\
+#        -o
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\Obj\
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M0 -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench
+#        7.0\arm\INC\c\DLib_Config_Normal.h" -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\bsp\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\application\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Include\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Include\ant\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Include\app_common\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Source\
+#        -I
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Source\app_common\
+#        -On -I "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        7.0\arm\CMSIS\Include\"
+#    List file    =  
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\List\interrupts.lst
+#    Object file  =  
+#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\Obj\interrupts.o
+#
+###############################################################################
+
+C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\interrupts.c
+      1          /**********************************************************************************************************************
+      2          File: interrupts.c                                                                
+      3          
+      4          Description:
+      5          This is a interrupts .c file new source code.
+      6          System-level interrupt handlers are defined here.  Driver-specific handlers will be found in
+      7          their respective source files.
+      8          
+      9          All SoC interrupts are in soc_integration.c
+     10          
+     11          This might be too fragmented, so we reserve the right to change it up after we play with it for a while.
+     12          
+     13          **********************************************************************************************************************/
+     14          
+     15          #include "configuration.h"
+     16          
+     17          /***********************************************************************************************************************
+     18          Global variable definitions with scope across entire project.
+     19          All Global variable names shall start with "G_"
+     20          ***********************************************************************************************************************/
+     21          /* New variables */
+
+   \                                 In section .bss, align 4
+     22          volatile u32 G_u32InterruptsFlags;                     /* Global state flags */
+   \                     G_u32InterruptsFlags:
+   \   00000000                      DS8 4
+     23          
+     24          
+     25          /*--------------------------------------------------------------------------------------------------------------------*/
+     26          /* Existing variables (defined in other files -- should all contain the "extern" keyword) */
+     27          extern volatile u32 G_u32SystemFlags;                  /* From main.c */
+     28          
+     29          extern volatile u32 G_u32SystemTime1ms;                /* From board-specific source file */
+     30          extern volatile u32 G_u32SystemTime1s;                 /* From board-specific source file */
+     31          
+     32          
+     33          /***********************************************************************************************************************
+     34          Global variable definitions with scope limited to this local application.
+     35          Variable names shall start with "Interrupts_" and be declared as static.
+     36          ***********************************************************************************************************************/
+     37          static u32 Interrupts_u32Timeout;                     /* Timeout counter used across states */
+     38          
+     39          
+     40          /**********************************************************************************************************************
+     41          Function Definitions
+     42          **********************************************************************************************************************/
+     43          
+     44          /*--------------------------------------------------------------------------------------------------------------------
+     45          Function: InterruptsInitialize
+     46          
+     47          Description:
+     48          Initializes the State Machine and its variables.
+     49          
+     50          Requires:
+     51            -
+     52          
+     53          Promises:
+     54            - 
+     55          */
+
+   \                                 In section .text, align 2, keep-with-next
+     56          void InterruptsInitialize(void)
+     57          {
+     58          
+     59          } /* end InterruptsInitialize() */
+   \                     InterruptsInitialize: (+1)
+   \   00000000   0x4770             BX       LR               ;; return
+     60          
+     61          
+     62          /*--------------------------------------------------------------------------------------------------------------------*/
+     63          /* Handlers                                                                                                  */
+     64          /*--------------------------------------------------------------------------------------------------------------------*/
+     65          
+
+   \                                 In section .text, align 2, keep-with-next
+     66          void HardFault_Handler(u32 u32ProgramCounter_, u32 u32LinkRegister_)
+     67          {
+   \                     HardFault_Handler: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+     68            (void)u32ProgramCounter_;
+     69            (void)u32LinkRegister_;
+     70          
+     71             while(1); // loop for debugging
+   \                     ??HardFault_Handler_0: (+1)
+   \   00000002   0xE7FE             B        ??HardFault_Handler_0
+     72             NVIC_SystemReset();
+                    ^
+Warning[Pe111]: statement is unreachable
+
+  static u32 Interrupts_u32Timeout;                     /* Timeout counter used across states */
+             ^
+"C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\interrupts.c",37  Warning[Pe177]: 
+          variable "Interrupts_u32Timeout" was declared but never referenced
+     73          }
+     74          
+     75          
+
+   \                                 In section .text, align 2, keep-with-next
+     76          void TIMER1_IRQHandler(void)
+     77          { 
+   \                     TIMER1_IRQHandler: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+     78            while(1);
+   \                     ??TIMER1_IRQHandler_0: (+1)
+   \   00000002   0xE7FE             B        ??TIMER1_IRQHandler_0
+     79          }
+     80          
+     81          
+     82          
+     83          
+     84          /*--------------------------------------------------------------------------------------------------------------------*/
+     85          /* End of File                                                                                                        */
+     86          /*--------------------------------------------------------------------------------------------------------------------*/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       4   HardFault_Handler
+       0   InterruptsInitialize
+       4   TIMER1_IRQHandler
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  G_u32InterruptsFlags
+       4  HardFault_Handler
+       2  InterruptsInitialize
+       4  TIMER1_IRQHandler
+
+ 
+  4 bytes in section .bss
+ 10 bytes in section .text
+ 
+ 10 bytes of CODE memory
+  4 bytes of DATA memory
+
+Errors: none
+Warnings: 2
