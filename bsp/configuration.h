@@ -92,6 +92,7 @@ Includes
 
 /* Application header files */
 #include "anttt.h"
+#include "scrcc.h"
 
 /**********************************************************************************************************************
 !!!!! External device peripheral assignments

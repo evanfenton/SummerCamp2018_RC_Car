@@ -33,6 +33,13 @@ Constants / Definitions
 #define BUTTON_COL2_PIN                 P0_15_INDEX
 #define BUTTON_COL3_PIN                 P0_23_INDEX
 
+
+                                                      /* for RC car controller */
+#define BUTTON_F                        (u32)2      
+#define BUTTON_B                        (u32)8
+#define BUTTON_L                        (u32)4
+#define BUTTON_R                        (u32)6
+
 /***********************************************************************************************************************
 Function Declarations
 ***********************************************************************************************************************/
