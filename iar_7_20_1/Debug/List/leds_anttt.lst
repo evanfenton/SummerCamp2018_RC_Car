@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        30/May/2018  13:45:45
+# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        30/May/2018  15:11:16
 # Copyright 1999-2014 IAR Systems AB.
 #
 #    Cpu mode     =  thumb
@@ -527,12 +527,12 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
     245          void LedInitialize(void)
     246          {
    \                     LedInitialize: (+1)
-   \   00000000   0xB500             PUSH     {LR}
-   \   00000002   0xB085             SUB      SP,SP,#+20
+   \   00000000   0xB510             PUSH     {R4,LR}
+   \   00000002   0xB086             SUB      SP,SP,#+24
     247            LedNumberType aeLedSequenceHome[] = {HOME1, HOME2, HOME3, HOME6, HOME9, HOME8, HOME7, HOME4};
                                  ^
 Warning[Pe177]: variable "aeLedSequenceHome" was declared but never referenced
-   \   00000004   0xA802             ADD      R0,SP,#+8
+   \   00000004   0xA803             ADD      R0,SP,#+12
    \   00000006   0x....             LDR      R1,??DataTable6_6
    \   00000008   0xC90C             LDM      R1!,{R2,R3}
    \   0000000A   0xC00C             STM      R0!,{R2,R3}
@@ -541,7 +541,7 @@ Warning[Pe177]: variable "aeLedSequenceHome" was declared but never referenced
     248            LedNumberType aeLedSequenceAway[] = {AWAY1, AWAY4, AWAY7, AWAY8, AWAY9, AWAY6, AWAY3, AWAY2};
                                  ^
 Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
-   \   00000010   0x4668             MOV      R0,SP
+   \   00000010   0xA801             ADD      R0,SP,#+4
    \   00000012   0x....             LDR      R1,??DataTable6_7
    \   00000014   0xC90C             LDM      R1!,{R2,R3}
    \   00000016   0xC00C             STM      R0!,{R2,R3}
@@ -552,114 +552,148 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
     251            //LedOn(STATUS_RED);
     252            //LedOn(STATUS_YLW);
     253            //LedOn(STATUS_GRN);
-    254            
-    255          #if 0
-    256            /* For RC Car startup */
-    257            
-    258            LedNumberType aeLedSequenceDirections[] = {FRONT_LED, RIGHT_LED, BACK_LED, LEFT_LED};
+    254          
+    255            /* For RC Car startup */
+    256            
+    257            LedNumberType aeLedSequenceDirections[] = {FRONT_LED, RIGHT_LED, BACK_LED, LEFT_LED};
+   \   0000001C   0x4668             MOV      R0,SP
+   \   0000001E   0x....             LDR      R1,??DataTable6_8
+   \   00000020   0x680A             LDR      R2,[R1, #0]
+   \   00000022   0x6002             STR      R2,[R0, #0]
+    258            
     259            
-    260            for(u8 n=0; n<3; n++){
-    261              for(u8 i=0; i<4; i++){
-    262                LedOn(aeLedSequenceDirections[i]);
-    263                for(u32 j = 0; j < 200000; j++);
-    264                LedOff(aeLedSequenceDirections[i]);
-    265              }
-    266            }
-    267          
-    268           /* Picture mode */
-    269            LedOn(HOME1);
-    270            LedOn(HOME5);
-    271            LedOn(HOME7);
-    272            LedOn(HOME2);
-    273            LedOn(AWAY9);
-    274            LedOn(AWAY4);
-    275            LedOn(AWAY6);
-    276            LedOn(AWAY8);
-    277          
-    278            while(1);
-    279          
-    280          #endif
-    281            LedOff(HOME5);
-   \   0000001C   0x2004             MOVS     R0,#+4
-   \   0000001E   0x.... 0x....      BL       LedOff
-    282            LedOn(AWAY5);
-   \   00000022   0x200D             MOVS     R0,#+13
-   \   00000024   0x.... 0x....      BL       LedOn
-    283            
-    284          #if 0
-    285            /* Sequentially light up the LEDs (blocking is allowed during init)*/
-    286            for(u8 i = 0; i < 8; i++)
-    287            {
-    288              LedToggle(HOME5);
-    289              LedToggle(AWAY5);
-    290              LedOn(aeLedSequenceHome[i]);
-    291              LedOn(aeLedSequenceAway[i]);
-    292              
-    293              for(u32 j = 0; j < 200000; j++);
-    294              
-    295              LedOff(aeLedSequenceHome[i]);
-    296              LedOff(aeLedSequenceAway[i]);
-    297            }
-    298          
-    299          
-    300            /* Sequentially light up the LEDs */
-    301            for(u8 i = 0; i < 18; i++)
-    302            {
-    303              LedOn(aeLedSequence[i]);
-    304              for(u32 j = 0; j < 300000; j++);
-    305            }
-    306          #endif
-    307          
-    308            /* Pause for show */
-    309            for(u32 i = 0; i < 2000000; i++);
-   \   00000028   0x2000             MOVS     R0,#+0
+    260          
+    261            for(u8 i=0; i<4; i++){
+   \   00000024   0x2400             MOVS     R4,#+0
    \                     ??LedInitialize_0: (+1)
-   \   0000002A   0x....             LDR      R1,??DataTable6_8  ;; 0x1e8480
-   \   0000002C   0x4288             CMP      R0,R1
-   \   0000002E   0xD201             BCS      ??LedInitialize_1
-   \   00000030   0x1C40             ADDS     R0,R0,#+1
-   \   00000032   0xE7FA             B        ??LedInitialize_0
-    310          
-    311            
-    312          } /* end LedInitialize() */
+   \   00000026   0xB2E4             UXTB     R4,R4
+   \   00000028   0x2C04             CMP      R4,#+4
+   \   0000002A   0xDA11             BGE      ??LedInitialize_1
+    262              
+    263              LedOn(aeLedSequenceDirections[i]);
+   \   0000002C   0x4668             MOV      R0,SP
+   \   0000002E   0xB2E4             UXTB     R4,R4
+   \   00000030   0x5D00             LDRB     R0,[R0, R4]
+   \   00000032   0x.... 0x....      BL       LedOn
+    264               
+    265              for(u32 j = 0; j < 200000; j++);
+   \   00000036   0x2000             MOVS     R0,#+0
+   \                     ??LedInitialize_2: (+1)
+   \   00000038   0x....             LDR      R1,??DataTable6_9  ;; 0x30d40
+   \   0000003A   0x4288             CMP      R0,R1
+   \   0000003C   0xD201             BCS      ??LedInitialize_3
+   \   0000003E   0x1C40             ADDS     R0,R0,#+1
+   \   00000040   0xE7FA             B        ??LedInitialize_2
+    266              
+    267              LedOff(aeLedSequenceDirections[i]);
+   \                     ??LedInitialize_3: (+1)
+   \   00000042   0x4668             MOV      R0,SP
+   \   00000044   0xB2E4             UXTB     R4,R4
+   \   00000046   0x5D00             LDRB     R0,[R0, R4]
+   \   00000048   0x.... 0x....      BL       LedOff
+    268            }
+   \   0000004C   0x1C64             ADDS     R4,R4,#+1
+   \   0000004E   0xE7EA             B        ??LedInitialize_0
+    269            
+    270          #if 0  
+    271           /* Picture mode */
+    272            LedOn(HOME1);
+    273            LedOn(HOME5);
+    274            LedOn(HOME7);
+    275            LedOn(HOME2);
+    276            LedOn(AWAY9);
+    277            LedOn(AWAY4);
+    278            LedOn(AWAY6);
+    279            LedOn(AWAY8);
+    280          
+    281            while(1);
+    282          
+    283          #endif
+    284            LedOff(HOME5);
    \                     ??LedInitialize_1: (+1)
-   \   00000034   0xB005             ADD      SP,SP,#+20
-   \   00000036   0xBD00             POP      {PC}             ;; return
+   \   00000050   0x2004             MOVS     R0,#+4
+   \   00000052   0x.... 0x....      BL       LedOff
+    285            LedOn(AWAY5);
+   \   00000056   0x200D             MOVS     R0,#+13
+   \   00000058   0x.... 0x....      BL       LedOn
+    286          
+    287            
+    288          #if 0
+    289            /* Sequentially light up the LEDs (blocking is allowed during init)*/
+    290            for(u8 i = 0; i < 4; i++)
+    291            {
+    292              LedToggle(HOME5);
+    293              LedToggle(AWAY5);
+    294              LedOn(aeLedSequenceDirections[i]);
+    295              //LedOn(aeLedSequenceHome[i]);
+    296              LedOn(aeLedSequenceAway[i]);
+    297              
+    298              for(u32 j = 0; j < 200000; j++);
+    299              
+    300              LedOff(aeLedSequenceDirections[i]);
+    301              //LedOff(aeLedSequenceHome[i]);
+    302              LedOff(aeLedSequenceAway[i]);
+    303            }
+    304          
+    305          
+    306            /* Sequentially light up the LEDs */
+    307            for(u8 i = 0; i < 18; i++)
+    308            {
+    309              LedOn(aeLedSequence[i]);
+    310              for(u32 j = 0; j < 300000; j++);
+    311            }
+    312          #endif
     313          
-    314          
-    315          /*--------------------------------------------------------------------------------------------------------------------*/
-    316          /* Private functions */
-    317          /*--------------------------------------------------------------------------------------------------------------------*/
-    318          
-    319          /*!----------------------------------------------------------------------------------------------------------------------
-    320          @fn void LedUpdate(void)
-    321          
-    322          @brief Update all LEDs for the current cycle.
-    323          
-    324          Requires:
-    325          - G_u32SystemTime1ms is counting
-    326          
-    327          Promises:
-    328          - All LEDs updated based on their counters
+    314            /* Pause for show */
+    315            for(u32 i = 0; i < 2000000; i++);
+   \   0000005C   0x2000             MOVS     R0,#+0
+   \                     ??LedInitialize_4: (+1)
+   \   0000005E   0x....             LDR      R1,??DataTable6_10  ;; 0x1e8480
+   \   00000060   0x4288             CMP      R0,R1
+   \   00000062   0xD201             BCS      ??LedInitialize_5
+   \   00000064   0x1C40             ADDS     R0,R0,#+1
+   \   00000066   0xE7FA             B        ??LedInitialize_4
+    316          
+    317            
+    318          } /* end LedInitialize() */
+   \                     ??LedInitialize_5: (+1)
+   \   00000068   0xB006             ADD      SP,SP,#+24
+   \   0000006A   0xBD10             POP      {R4,PC}          ;; return
+    319          
+    320          
+    321          /*--------------------------------------------------------------------------------------------------------------------*/
+    322          /* Private functions */
+    323          /*--------------------------------------------------------------------------------------------------------------------*/
+    324          
+    325          /*!----------------------------------------------------------------------------------------------------------------------
+    326          @fn void LedUpdate(void)
+    327          
+    328          @brief Update all LEDs for the current cycle.
     329          
-    330          */
+    330          Requires:
+    331          - G_u32SystemTime1ms is counting
+    332          
+    333          Promises:
+    334          - All LEDs updated based on their counters
+    335          
+    336          */
 
    \                                 In section .text, align 2, keep-with-next
-    331          void LedUpdate(void)
-    332          {
+    337          void LedUpdate(void)
+    338          {
    \                     LedUpdate: (+1)
    \   00000000   0xB510             PUSH     {R4,LR}
-    333          	/* Loop through each LED */
-    334            for(u8 i = 0; i < TOTAL_LEDS; i++)
+    339          	/* Loop through each LED */
+    340            for(u8 i = 0; i < TOTAL_LEDS; i++)
    \   00000002   0x2400             MOVS     R4,#+0
    \                     ??LedUpdate_0: (+1)
    \   00000004   0xB2E4             UXTB     R4,R4
    \   00000006   0x2C15             CMP      R4,#+21
    \   00000008   0xDB00             BLT      .+4
    \   0000000A   0xE0A6             B        ??LedUpdate_1
-    335            {
-    336              /* Check if LED is PWMing */
-    337              if(Leds_asLedArray[(LedNumberType)i].eMode == LED_PWM_MODE)
+    341            {
+    342              /* Check if LED is PWMing */
+    343              if(Leds_asLedArray[(LedNumberType)i].eMode == LED_PWM_MODE)
    \   0000000C   0x....             LDR      R0,??DataTable6
    \   0000000E   0xB2E4             UXTB     R4,R4
    \   00000010   0x2108             MOVS     R1,#+8
@@ -667,9 +701,9 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   00000014   0x5C40             LDRB     R0,[R0, R1]
    \   00000016   0x2801             CMP      R0,#+1
    \   00000018   0xD171             BNE      ??LedUpdate_2
-    338              {
-    339                /* Handle special case of 0% duty cycle */
-    340                if( Leds_asLedArray[i].eRate == LED_PWM_0 )
+    344              {
+    345                /* Handle special case of 0% duty cycle */
+    346                if( Leds_asLedArray[i].eRate == LED_PWM_0 )
    \   0000001A   0x....             LDR      R0,??DataTable6
    \   0000001C   0xB2E4             UXTB     R4,R4
    \   0000001E   0x2108             MOVS     R1,#+8
@@ -679,16 +713,16 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   00000026   0x5E40             LDRSH    R0,[R0, R1]
    \   00000028   0x2800             CMP      R0,#+0
    \   0000002A   0xD104             BNE      ??LedUpdate_3
-    341                {
-    342                  LedOff( (LedNumberType)i );
+    347                {
+    348                  LedOff( (LedNumberType)i );
    \   0000002C   0x0020             MOVS     R0,R4
    \   0000002E   0xB2C0             UXTB     R0,R0
    \   00000030   0x.... 0x....      BL       LedOff
    \   00000034   0xE05C             B        ??LedUpdate_4
-    343                }
-    344                
-    345                /* Handle special case of 100% duty cycle */
-    346                else if( Leds_asLedArray[i].eRate == LED_PWM_100 )
+    349                }
+    350                
+    351                /* Handle special case of 100% duty cycle */
+    352                else if( Leds_asLedArray[i].eRate == LED_PWM_100 )
    \                     ??LedUpdate_3: (+1)
    \   00000036   0x....             LDR      R0,??DataTable6
    \   00000038   0xB2E4             UXTB     R4,R4
@@ -699,18 +733,18 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   00000042   0x5E40             LDRSH    R0,[R0, R1]
    \   00000044   0x2814             CMP      R0,#+20
    \   00000046   0xD104             BNE      ??LedUpdate_5
-    347                {
-    348                  LedOn( (LedNumberType)i );
+    353                {
+    354                  LedOn( (LedNumberType)i );
    \   00000048   0x0020             MOVS     R0,R4
    \   0000004A   0xB2C0             UXTB     R0,R0
    \   0000004C   0x.... 0x....      BL       LedOn
    \   00000050   0xE04E             B        ??LedUpdate_4
-    349                }
-    350            
-    351                /* Otherwise, regular PWM: decrement counter; toggle and reload if counter reaches 0 */
-    352                else
-    353                {
-    354                  if(--Leds_asLedArray[(LedNumberType)i].u16Count == 0)
+    355                }
+    356            
+    357                /* Otherwise, regular PWM: decrement counter; toggle and reload if counter reaches 0 */
+    358                else
+    359                {
+    360                  if(--Leds_asLedArray[(LedNumberType)i].u16Count == 0)
    \                     ??LedUpdate_5: (+1)
    \   00000052   0x....             LDR      R0,??DataTable6
    \   00000054   0xB2E4             UXTB     R4,R4
@@ -733,8 +767,8 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   00000076   0x8880             LDRH     R0,[R0, #+4]
    \   00000078   0x2800             CMP      R0,#+0
    \   0000007A   0xD139             BNE      ??LedUpdate_4
-    355                  {
-    356                    if(Leds_asLedArray[(LedNumberType)i].eCurrentDuty == LED_PWM_DUTY_HIGH)
+    361                  {
+    362                    if(Leds_asLedArray[(LedNumberType)i].eCurrentDuty == LED_PWM_DUTY_HIGH)
    \   0000007C   0x....             LDR      R0,??DataTable6
    \   0000007E   0xB2E4             UXTB     R4,R4
    \   00000080   0x2108             MOVS     R1,#+8
@@ -743,13 +777,13 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   00000086   0x7980             LDRB     R0,[R0, #+6]
    \   00000088   0x2801             CMP      R0,#+1
    \   0000008A   0xD11A             BNE      ??LedUpdate_6
-    357                    {
-    358                      /* Turn the LED off and update the counters for the next cycle */
-    359                      LedOff( (LedNumberType)i );
+    363                    {
+    364                      /* Turn the LED off and update the counters for the next cycle */
+    365                      LedOff( (LedNumberType)i );
    \   0000008C   0x0020             MOVS     R0,R4
    \   0000008E   0xB2C0             UXTB     R0,R0
    \   00000090   0x.... 0x....      BL       LedOff
-    360                      Leds_asLedArray[(LedNumberType)i].u16Count = LED_PWM_PERIOD - Leds_asLedArray[(LedNumberType)i].eRate;
+    366                      Leds_asLedArray[(LedNumberType)i].u16Count = LED_PWM_PERIOD - Leds_asLedArray[(LedNumberType)i].eRate;
    \   00000094   0x2014             MOVS     R0,#+20
    \   00000096   0x....             LDR      R1,??DataTable6
    \   00000098   0xB2E4             UXTB     R4,R4
@@ -765,7 +799,7 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   000000AC   0x4362             MULS     R2,R4,R2
    \   000000AE   0x1889             ADDS     R1,R1,R2
    \   000000B0   0x8088             STRH     R0,[R1, #+4]
-    361                      Leds_asLedArray[(LedNumberType)i].eCurrentDuty = LED_PWM_DUTY_LOW;
+    367                      Leds_asLedArray[(LedNumberType)i].eCurrentDuty = LED_PWM_DUTY_LOW;
    \   000000B2   0x2000             MOVS     R0,#+0
    \   000000B4   0x....             LDR      R1,??DataTable6
    \   000000B6   0xB2E4             UXTB     R4,R4
@@ -774,16 +808,16 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   000000BC   0x1889             ADDS     R1,R1,R2
    \   000000BE   0x7188             STRB     R0,[R1, #+6]
    \   000000C0   0xE016             B        ??LedUpdate_4
-    362                    }
-    363                    else
-    364                    {
-    365                      /* Turn the LED on and update the counters for the next cycle */
-    366                      LedOn( (LedNumberType)i );
+    368                    }
+    369                    else
+    370                    {
+    371                      /* Turn the LED on and update the counters for the next cycle */
+    372                      LedOn( (LedNumberType)i );
    \                     ??LedUpdate_6: (+1)
    \   000000C2   0x0020             MOVS     R0,R4
    \   000000C4   0xB2C0             UXTB     R0,R0
    \   000000C6   0x.... 0x....      BL       LedOn
-    367                      Leds_asLedArray[i].u16Count = Leds_asLedArray[i].eRate;
+    373                      Leds_asLedArray[i].u16Count = Leds_asLedArray[i].eRate;
    \   000000CA   0x....             LDR      R0,??DataTable6
    \   000000CC   0xB2E4             UXTB     R4,R4
    \   000000CE   0x2108             MOVS     R1,#+8
@@ -796,7 +830,7 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   000000DC   0x4362             MULS     R2,R4,R2
    \   000000DE   0x1889             ADDS     R1,R1,R2
    \   000000E0   0x8088             STRH     R0,[R1, #+4]
-    368                      Leds_asLedArray[i].eCurrentDuty = LED_PWM_DUTY_HIGH;
+    374                      Leds_asLedArray[i].eCurrentDuty = LED_PWM_DUTY_HIGH;
    \   000000E2   0x2001             MOVS     R0,#+1
    \   000000E4   0x....             LDR      R1,??DataTable6
    \   000000E6   0xB2E4             UXTB     R4,R4
@@ -804,12 +838,12 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   000000EA   0x4362             MULS     R2,R4,R2
    \   000000EC   0x1889             ADDS     R1,R1,R2
    \   000000EE   0x7188             STRB     R0,[R1, #+6]
-    369                    }
-    370                  }
-    371                }
-    372          
-    373                /* Set the LED back to PWM mode since LedOff and LedOn set it to normal mode */
-    374               	Leds_asLedArray[(LedNumberType)i].eMode = LED_PWM_MODE;
+    375                    }
+    376                  }
+    377                }
+    378          
+    379                /* Set the LED back to PWM mode since LedOff and LedOn set it to normal mode */
+    380               	Leds_asLedArray[(LedNumberType)i].eMode = LED_PWM_MODE;
    \                     ??LedUpdate_4: (+1)
    \   000000F0   0x2001             MOVS     R0,#+1
    \   000000F2   0x....             LDR      R1,??DataTable6
@@ -818,11 +852,11 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   000000F8   0x4362             MULS     R2,R4,R2
    \   000000FA   0x5488             STRB     R0,[R1, R2]
    \   000000FC   0xE02B             B        ??LedUpdate_7
-    375                
-    376              } /* end if PWM mode */
-    377              
-    378              /* LED is in LED_BLINK_MODE mode */
-    379              else if(Leds_asLedArray[(LedNumberType)i].eMode == LED_BLINK_MODE)
+    381                
+    382              } /* end if PWM mode */
+    383              
+    384              /* LED is in LED_BLINK_MODE mode */
+    385              else if(Leds_asLedArray[(LedNumberType)i].eMode == LED_BLINK_MODE)
    \                     ??LedUpdate_2: (+1)
    \   000000FE   0x....             LDR      R0,??DataTable6
    \   00000100   0xB2E4             UXTB     R4,R4
@@ -831,9 +865,9 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   00000106   0x5C40             LDRB     R0,[R0, R1]
    \   00000108   0x2802             CMP      R0,#+2
    \   0000010A   0xD124             BNE      ??LedUpdate_7
-    380              {
-    381                /* Decrement counter; toggle and reload if counter reaches 0 */
-    382                if( --Leds_asLedArray[(LedNumberType)i].u16Count == 0)
+    386              {
+    387                /* Decrement counter; toggle and reload if counter reaches 0 */
+    388                if( --Leds_asLedArray[(LedNumberType)i].u16Count == 0)
    \   0000010C   0x....             LDR      R0,??DataTable6
    \   0000010E   0xB2E4             UXTB     R4,R4
    \   00000110   0x2108             MOVS     R1,#+8
@@ -855,12 +889,12 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   00000130   0x8880             LDRH     R0,[R0, #+4]
    \   00000132   0x2800             CMP      R0,#+0
    \   00000134   0xD10F             BNE      ??LedUpdate_7
-    383                {
-    384                  LedToggle( (LedNumberType)i );
+    389                {
+    390                  LedToggle( (LedNumberType)i );
    \   00000136   0x0020             MOVS     R0,R4
    \   00000138   0xB2C0             UXTB     R0,R0
    \   0000013A   0x.... 0x....      BL       LedToggle
-    385                  Leds_asLedArray[(LedNumberType)i].u16Count = Leds_asLedArray[(LedNumberType)i].eRate;
+    391                  Leds_asLedArray[(LedNumberType)i].u16Count = Leds_asLedArray[(LedNumberType)i].eRate;
    \   0000013E   0x....             LDR      R0,??DataTable6
    \   00000140   0xB2E4             UXTB     R4,R4
    \   00000142   0x2108             MOVS     R1,#+8
@@ -873,14 +907,14 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   00000150   0x4362             MULS     R2,R4,R2
    \   00000152   0x1889             ADDS     R1,R1,R2
    \   00000154   0x8088             STRH     R0,[R1, #+4]
-    386                }
-    387              }
-    388            } /* end for */
+    392                }
+    393              }
+    394            } /* end for */
    \                     ??LedUpdate_7: (+1)
    \   00000156   0x1C64             ADDS     R4,R4,#+1
    \   00000158   0xE754             B        ??LedUpdate_0
-    389            
-    390          } /* end LedUpdate() */
+    395            
+    396          } /* end LedUpdate() */
    \                     ??LedUpdate_1: (+1)
    \   0000015A   0xBD10             POP      {R4,PC}          ;; return
 
@@ -918,6 +952,14 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable6_8:
+   \   00000000   0x........         DC32     ?_2
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_9:
+   \   00000000   0x00030D40         DC32     0x30d40
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_10:
    \   00000000   0x001E8480         DC32     0x1e8480
 
    \                                 In section .rodata, align 4
@@ -933,24 +975,29 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \              0x0F 0x10    
    \              0x11 0x0E    
    \              0x0B 0x0A    
-    391          
-    392          
-    393          
-    394          
-    395          /*--------------------------------------------------------------------------------------------------------------------*/
-    396          /* End of File */
-    397          /*--------------------------------------------------------------------------------------------------------------------*/
+
+   \                                 In section .rodata, align 4
+   \                     ?_2:
+   \   00000000   0x0A 0x0E          DC8 10, 14, 16, 12
+   \              0x10 0x0C    
+    397          
     398          
     399          
+    400          
+    401          /*--------------------------------------------------------------------------------------------------------------------*/
+    402          /* End of File */
+    403          /*--------------------------------------------------------------------------------------------------------------------*/
+    404          
+    405          
 
    Maximum stack usage in bytes:
 
    .cstack Function
    ------- --------
        4   LedBlink
-      24   LedInitialize
-        24   -> LedOff
-        24   -> LedOn
+      32   LedInitialize
+        32   -> LedOff
+        32   -> LedOn
        4   LedOff
        4   LedOn
        4   LedPWM
@@ -967,6 +1014,7 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    -----  --------------
        4  ??DataTable6
        4  ??DataTable6_1
+       4  ??DataTable6_10
        4  ??DataTable6_2
        4  ??DataTable6_3
        4  ??DataTable6_4
@@ -974,10 +1022,12 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
        4  ??DataTable6_6
        4  ??DataTable6_7
        4  ??DataTable6_8
+       4  ??DataTable6_9
        8  ?_0
        8  ?_1
+       4  ?_2
       42  LedBlink
-      56  LedInitialize
+     108  LedInitialize
       62  LedOff
       62  LedOn
       56  LedPWM
@@ -988,11 +1038,11 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
 
  
  252 bytes in section .data
-  16 bytes in section .rodata
- 688 bytes in section .text
+  20 bytes in section .rodata
+ 748 bytes in section .text
  
- 688 bytes of CODE  memory
-  16 bytes of CONST memory
+ 748 bytes of CODE  memory
+  20 bytes of CONST memory
  252 bytes of DATA  memory
 
 Errors: none

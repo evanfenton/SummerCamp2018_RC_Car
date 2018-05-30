@@ -61,7 +61,7 @@ Promises:
 */
 void ScrccInitialize(void)
 {
-  SCRCC_SM = ScrccSM_Idle;
+  SCRCC_SM = &ScrccSM_Idle;
   
 } /* end ScrccInitialize(void) */
 
@@ -213,7 +213,7 @@ static void ScrccSM_Idle(void)
   LedPWM(EN_LEFT, LED_PWM_0);              /* make sure motors are off */
   LedPWM(EN_RIGHT, LED_PWM_0);
   
-  ButtonInitialize();
+  //ButtonInitialize();
   
   SCRCC_SM = ScrccSM_Active;
   
@@ -235,7 +235,7 @@ Promises:
 static void ScrccSM_Active(void)
 {
   
-  if(WasButtonPressed(BUTTON_F)){
+  if(IsButtonPressed(BUTTON_F)){
     Scrcc_Forward();
   }
   else if(IsButtonPressed(BUTTON_B)){

@@ -19,7 +19,7 @@ volatile u32 G_u32SystemFlags = 0;                     /* Global system flags */
 extern volatile u32 G_u32SystemTime1ms;                /* From board-specific source file */
 extern volatile u32 G_u32SystemTime1s;                 /* From board-specific source file */
 
-//extern fnCode_type ANTTT_SM;
+extern fnCode_type ANTTT_SM;
 extern fnCode_type SCRCC_SM;
 
 /***********************************************************************************************************************
@@ -96,8 +96,8 @@ void main(void)
     LedUpdate();
     
     /* State Machines */
-    //ANTTT_SM();
-    SCRCC_SM();
+    ANTTT_SM();
+    //SCRCC_SM();
     ButtonRunActiveState();
    
     /* System sleep*/
