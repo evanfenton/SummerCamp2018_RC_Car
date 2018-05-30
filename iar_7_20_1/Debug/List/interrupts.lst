@@ -1,48 +1,44 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        28/May/2018  09:17:43
+# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        30/May/2018  11:07:37
 # Copyright 1999-2014 IAR Systems AB.
 #
 #    Cpu mode     =  thumb
 #    Endian       =  little
-#    Source file  =  
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\interrupts.c
+#    Source file  =  C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\bsp\interrupts.c
 #    Command line =  
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\interrupts.c
-#        -lC
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\List\
-#        -o
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\Obj\
-#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
-#        --no_clustering --no_scheduling --debug --endian=little
-#        --cpu=Cortex-M0 -e --fpu=None --dlib_config "C:\Program Files
-#        (x86)\IAR Systems\Embedded Workbench
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\bsp\interrupts.c -D NRF51 -lC
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\Debug\List\ -o
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\Debug\Obj\ --no_cse
+#        --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering
+#        --no_scheduling --debug --endian=little --cpu=Cortex-M0 -e --fpu=None
+#        --dlib_config "C:\Program Files (x86)\IAR Systems\Embedded Workbench
 #        7.0\arm\INC\c\DLib_Config_Normal.h" -I
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\bsp\
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\..\bsp\ -I
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\..\application\ -I
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\..\nordic_sdk6_1_0\
 #        -I
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\application\
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\..\nordic_sdk6_1_0\Include\
 #        -I
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\..\nordic_sdk6_1_0\Include\s310\
 #        -I
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Include\
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\..\nordic_sdk6_1_0\Include\ble\
 #        -I
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Include\ant\
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\..\nordic_sdk6_1_0\Include\ble\ble_services\
 #        -I
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Include\app_common\
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\..\nordic_sdk6_1_0\Include\ble\device_manager\
 #        -I
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Source\
-#        -I
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\..\nordic_sdk4_2_2\Source\app_common\
-#        -On -I "C:\Program Files (x86)\IAR Systems\Embedded Workbench
-#        7.0\arm\CMSIS\Include\"
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\..\nordic_sdk6_1_0\Include\app_common\
+#        -On --require_prototypes -I "C:\Program Files (x86)\IAR
+#        Systems\Embedded Workbench 7.0\arm\CMSIS\Include\"
 #    List file    =  
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\List\interrupts.lst
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\Debug\List\interrupts.lst
 #    Object file  =  
-#        C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\iar_7_20_1\Debug\Obj\interrupts.o
+#        C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\iar_7_20_1\Debug\Obj\interrupts.o
 #
 ###############################################################################
 
-C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\interrupts.c
+C:\Users\ENGENUICS5\Desktop\ANTTT-Jason\bsp\interrupts.c
       1          /**********************************************************************************************************************
       2          File: interrupts.c                                                                
       3          
@@ -77,92 +73,343 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\interrupts.c
      28          
      29          extern volatile u32 G_u32SystemTime1ms;                /* From board-specific source file */
      30          extern volatile u32 G_u32SystemTime1s;                 /* From board-specific source file */
-     31          
-     32          
-     33          /***********************************************************************************************************************
-     34          Global variable definitions with scope limited to this local application.
-     35          Variable names shall start with "Interrupts_" and be declared as static.
-     36          ***********************************************************************************************************************/
-     37          static u32 Interrupts_u32Timeout;                     /* Timeout counter used across states */
-     38          
-     39          
-     40          /**********************************************************************************************************************
-     41          Function Definitions
-     42          **********************************************************************************************************************/
-     43          
-     44          /*--------------------------------------------------------------------------------------------------------------------
-     45          Function: InterruptsInitialize
-     46          
-     47          Description:
-     48          Initializes the State Machine and its variables.
-     49          
-     50          Requires:
-     51            -
-     52          
-     53          Promises:
-     54            - 
-     55          */
+     31          extern volatile bool G_abButtonDebounceActive[TOTAL_BUTTONS];
+     32          extern volatile u32 G_au32ButtonDebounceTimeStart[TOTAL_BUTTONS];
+     33          
+     34          
+     35          /***********************************************************************************************************************
+     36          Global variable definitions with scope limited to this local application.
+     37          Variable names shall start with "Interrupts_" and be declared as static.
+     38          ***********************************************************************************************************************/
+     39          //static u32 Interrupts_u32Timeout;                     /* Timeout counter used across states */
+     40          
+     41          
+     42          /**********************************************************************************************************************
+     43          Function Definitions
+     44          **********************************************************************************************************************/
+     45          
+     46          /*--------------------------------------------------------------------------------------------------------------------
+     47          Function: InterruptsInitialize
+     48          
+     49          Description:
+     50          Initializes the State Machine and its variables.
+     51          
+     52          Requires:
+     53            - None.
+     54          
+     55          Promises:
+     56            - Returns TRUE if SoftDevice Interrupts are successfully enabled, FALSE otherwise.
+     57          */
 
    \                                 In section .text, align 2, keep-with-next
-     56          void InterruptsInitialize(void)
-     57          {
-     58          
-     59          } /* end InterruptsInitialize() */
+     58          bool InterruptsInitialize(void)
+     59          {
    \                     InterruptsInitialize: (+1)
-   \   00000000   0x4770             BX       LR               ;; return
-     60          
-     61          
-     62          /*--------------------------------------------------------------------------------------------------------------------*/
-     63          /* Handlers                                                                                                  */
-     64          /*--------------------------------------------------------------------------------------------------------------------*/
-     65          
+   \   00000000   0xB580             PUSH     {R7,LR}
+     60          #define SD_PRESENT 1
+     61            
+     62          #ifndef SD_PRESENT  
+     63            NVIC_ClearPendingIRQ(RTC1_IRQn);
+     64            NVIC_EnableIRQ(RTC1_IRQn);
+     65            
+     66            NVIC_ClearPendingIRQ(GPIOTE_IRQn);
+     67            NVIC_EnableIRQ(GPIOTE_IRQn);
+     68          #else
+     69            
+     70            u32 u32Result = NRF_SUCCESS;
+   \   00000002   0x2200             MOVS     R2,#+0
+     71            
+     72            // Must enable the SoftDevice Interrupt first.
+     73            u32Result |= sd_nvic_SetPriority(SD_EVT_IRQn, NRF_APP_PRIORITY_LOW);
+   \   00000004   0x2103             MOVS     R1,#+3
+   \   00000006   0x2016             MOVS     R0,#+22
+   \   00000008   0xDF28             SVC      0x28
+   \   0000000A   0x4310             ORRS     R0,R0,R2
+   \   0000000C   0x0002             MOVS     R2,R0
+     74            u32Result |= sd_nvic_EnableIRQ(SD_EVT_IRQn);
+   \   0000000E   0x2016             MOVS     R0,#+22
+   \   00000010   0xDF23             SVC      0x23
+   \   00000012   0x4310             ORRS     R0,R0,R2
+   \   00000014   0x0002             MOVS     R2,R0
+     75            
+     76            // Enable the RTC Peripheral.
+     77            u32Result |= sd_nvic_SetPriority(RTC1_IRQn, NRF_APP_PRIORITY_LOW);
+   \   00000016   0x2103             MOVS     R1,#+3
+   \   00000018   0x2011             MOVS     R0,#+17
+   \   0000001A   0xDF28             SVC      0x28
+   \   0000001C   0x4310             ORRS     R0,R0,R2
+   \   0000001E   0x0002             MOVS     R2,R0
+     78            u32Result |= sd_nvic_EnableIRQ(RTC1_IRQn);
+   \   00000020   0x2011             MOVS     R0,#+17
+   \   00000022   0xDF23             SVC      0x23
+   \   00000024   0x4310             ORRS     R0,R0,R2
+   \   00000026   0x0002             MOVS     R2,R0
+     79          
+     80            // Enable the GPIOTE Peripheral.
+     81            u32Result |= sd_nvic_SetPriority(GPIOTE_IRQn, NRF_APP_PRIORITY_LOW);
+   \   00000028   0x2103             MOVS     R1,#+3
+   \   0000002A   0x2006             MOVS     R0,#+6
+   \   0000002C   0xDF28             SVC      0x28
+   \   0000002E   0x4310             ORRS     R0,R0,R2
+   \   00000030   0x0002             MOVS     R2,R0
+     82            u32Result |= sd_nvic_EnableIRQ(GPIOTE_IRQn);
+   \   00000032   0x2006             MOVS     R0,#+6
+   \   00000034   0xDF23             SVC      0x23
+   \   00000036   0x4310             ORRS     R0,R0,R2
+   \   00000038   0x0002             MOVS     R2,R0
+     83          
+     84            return (u32Result == NRF_SUCCESS);
+   \   0000003A   0x2A00             CMP      R2,#+0
+   \   0000003C   0xD101             BNE      ??InterruptsInitialize_0
+   \   0000003E   0x2001             MOVS     R0,#+1
+   \   00000040   0xE000             B        ??InterruptsInitialize_1
+   \                     ??InterruptsInitialize_0: (+1)
+   \   00000042   0x2000             MOVS     R0,#+0
+   \                     ??InterruptsInitialize_1: (+1)
+   \   00000044   0xB2C0             UXTB     R0,R0
+   \   00000046   0xBD02             POP      {R1,PC}          ;; return
+     85          #endif
+     86          
+     87          } /* end InterruptsInitialize() */
+     88          
+     89          
+     90          /*--------------------------------------------------------------------------------------------------------------------*/
+     91          /* Handlers                                                                                                  */
+     92          /*--------------------------------------------------------------------------------------------------------------------*/
+     93          
 
    \                                 In section .text, align 2, keep-with-next
-     66          void HardFault_Handler(u32 u32ProgramCounter_, u32 u32LinkRegister_)
-     67          {
+     94          void HardFault_Handler(u32 u32ProgramCounter_, u32 u32LinkRegister_)
+     95          {
    \                     HardFault_Handler: (+1)
    \   00000000   0xB500             PUSH     {LR}
-     68            (void)u32ProgramCounter_;
-     69            (void)u32LinkRegister_;
-     70          
-     71             while(1); // loop for debugging
+     96            (void)u32ProgramCounter_;
+     97            (void)u32LinkRegister_;
+     98          
+     99             while(1); // loop for debugging
    \                     ??HardFault_Handler_0: (+1)
    \   00000002   0xE7FE             B        ??HardFault_Handler_0
-     72             NVIC_SystemReset();
-                    ^
-Warning[Pe111]: statement is unreachable
-
-  static u32 Interrupts_u32Timeout;                     /* Timeout counter used across states */
-             ^
-"C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\interrupts.c",37  Warning[Pe177]: 
-          variable "Interrupts_u32Timeout" was declared but never referenced
-     73          }
-     74          
-     75          
+    100          }
+    101          
+    102          
 
    \                                 In section .text, align 2, keep-with-next
-     76          void TIMER1_IRQHandler(void)
-     77          { 
+    103          void TIMER1_IRQHandler(void)
+    104          { 
    \                     TIMER1_IRQHandler: (+1)
    \   00000000   0xB500             PUSH     {LR}
-     78            while(1);
+    105            while(1);
    \                     ??TIMER1_IRQHandler_0: (+1)
    \   00000002   0xE7FE             B        ??TIMER1_IRQHandler_0
-     79          }
-     80          
-     81          
-     82          
-     83          
-     84          /*--------------------------------------------------------------------------------------------------------------------*/
-     85          /* End of File                                                                                                        */
-     86          /*--------------------------------------------------------------------------------------------------------------------*/
+    106          }
+    107          
+
+   \                                 In section .text, align 2, keep-with-next
+    108          void RTC1_IRQHandler(void)
+    109          {
+   \                     RTC1_IRQHandler: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+    110            // Clear the Tick Event
+    111            NRF_RTC1->EVENTS_TICK = 0;
+   \   00000002   0x2000             MOVS     R0,#+0
+   \   00000004   0x....             LDR      R1,??DataTable2  ;; 0x40011100
+   \   00000006   0x6008             STR      R0,[R1, #+0]
+    112            
+    113            // Update global counters.
+    114            G_u32SystemTime1ms++;
+   \   00000008   0x....             LDR      R0,??DataTable2_1
+   \   0000000A   0x6800             LDR      R0,[R0, #+0]
+   \   0000000C   0x1C40             ADDS     R0,R0,#+1
+   \   0000000E   0x....             LDR      R1,??DataTable2_1
+   \   00000010   0x6008             STR      R0,[R1, #+0]
+    115            if ((G_u32SystemTime1ms % 1000) == 0)
+   \   00000012   0x....             LDR      R0,??DataTable2_1
+   \   00000014   0x6800             LDR      R0,[R0, #+0]
+   \   00000016   0x21FA             MOVS     R1,#+250
+   \   00000018   0x0089             LSLS     R1,R1,#+2        ;; #+1000
+   \   0000001A   0x.... 0x....      BL       __aeabi_uidivmod
+   \   0000001E   0x2900             CMP      R1,#+0
+   \   00000020   0xD104             BNE      ??RTC1_IRQHandler_0
+    116            {
+    117              G_u32SystemTime1s++;
+   \   00000022   0x....             LDR      R0,??DataTable2_2
+   \   00000024   0x6800             LDR      R0,[R0, #+0]
+   \   00000026   0x1C40             ADDS     R0,R0,#+1
+   \   00000028   0x....             LDR      R1,??DataTable2_2
+   \   0000002A   0x6008             STR      R0,[R1, #+0]
+    118            }
+    119          }
+   \                     ??RTC1_IRQHandler_0: (+1)
+   \   0000002C   0xBD00             POP      {PC}             ;; return
+    120          
+    121          
+    122          /*--------------------------------------------------------------------------------------------------------------------
+    123          Interrupt handler: SD_EVT_IRQHandler
+    124          
+    125          Description:
+    126          Processes soft device events.
+    127          
+    128          Requires:
+    129            - enabled via sd_nvic_XXX
+    130          
+    131          Promises:
+    132            -  Sets global system flags indicating that BLE and ANT events are pending.
+    133               It is possible that either ANT or BLE events OR ANT & BLE events are pending.
+    134               The application shall handle all the cases. 
+    135          */
+
+   \                                 In section .text, align 2, keep-with-next
+    136          void SD_EVT_IRQHandler(void)
+    137          {
+    138            /* Set Flag that ANT and BLE Events pending. */
+    139            G_u32SystemFlags |= (_SYSTEM_PROTOCOL_EVENT); 
+   \                     SWI2_IRQHandler: (+1)
+   \   00000000   0x....             LDR      R0,??DataTable2_3
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0x2180             MOVS     R1,#+128
+   \   00000006   0x0249             LSLS     R1,R1,#+9        ;; #+65536
+   \   00000008   0x4301             ORRS     R1,R1,R0
+   \   0000000A   0x....             LDR      R0,??DataTable2_3
+   \   0000000C   0x6001             STR      R1,[R0, #+0]
+    140          }
+   \   0000000E   0x4770             BX       LR               ;; return
+    141          
+    142          
+    143          /*--------------------------------------------------------------------------------------------------------------------
+    144          Interrupt handler: GPIOTE_IRQHandler
+    145          
+    146          Description:
+    147          Processes GPIOTE Events such as Pin and Port InterruptsB
+    148          
+    149          Requires:
+    150            - Enabled via sd_nvic_XXX
+    151          
+    152          Promises:
+    153            - Handles the GPIOTE events for the enabled pins. 
+    154          */
+
+   \                                 In section .text, align 2, keep-with-next
+    155          void GPIOTE_IRQHandler(void)
+    156          {
+   \                     GPIOTE_IRQHandler: (+1)
+   \   00000000   0xB570             PUSH     {R4-R6,LR}
+    157            u8 u8ButtonIndex;
+    158          
+    159            // Disable further GPIOTE Interrupts. Button module will reenable it once button is released.
+    160            NRF_GPIOTE->INTENCLR = (GPIOTE_INTENCLR_IN0_Msk | GPIOTE_INTENCLR_IN1_Msk | GPIOTE_INTENCLR_IN2_Msk);
+   \   00000002   0x2007             MOVS     R0,#+7
+   \   00000004   0x....             LDR      R1,??DataTable2_4  ;; 0x40006308
+   \   00000006   0x6008             STR      R0,[R1, #+0]
+    161          
+    162            // Loop over 3 GPIOTE Channels
+    163            for (u8 u8Channel = 0; u8Channel < 3; u8Channel++)
+   \   00000008   0x2500             MOVS     R5,#+0
+   \                     ??GPIOTE_IRQHandler_0: (+1)
+   \   0000000A   0xB2ED             UXTB     R5,R5
+   \   0000000C   0x2D03             CMP      R5,#+3
+   \   0000000E   0xDA21             BGE      ??GPIOTE_IRQHandler_1
+    164            {
+    165              // Check if Interrupt occured on this channel.
+    166              if (NRF_GPIOTE->EVENTS_IN[u8Channel] == 1)
+   \   00000010   0x....             LDR      R0,??DataTable2_5  ;; 0x40006100
+   \   00000012   0xB2ED             UXTB     R5,R5
+   \   00000014   0x2104             MOVS     R1,#+4
+   \   00000016   0x4369             MULS     R1,R5,R1
+   \   00000018   0x5840             LDR      R0,[R0, R1]
+   \   0000001A   0x2801             CMP      R0,#+1
+   \   0000001C   0xD118             BNE      ??GPIOTE_IRQHandler_2
+    167              {
+    168                 u8ButtonIndex = ( (u8Channel * 2) + u8Channel) + ButtonGetActiveColumn();
+   \   0000001E   0x2002             MOVS     R0,#+2
+   \   00000020   0x4368             MULS     R0,R5,R0
+   \   00000022   0x1946             ADDS     R6,R0,R5
+   \   00000024   0x.... 0x....      BL       ButtonGetActiveColumn
+   \   00000028   0x1830             ADDS     R0,R6,R0
+   \   0000002A   0x0004             MOVS     R4,R0
+    169                 
+    170                 // Clear Channel Interrupt and Set Button Debounce Flags on buttons.
+    171                 // SW_ROWx + Active COLx corresponds to the Index of the button being pressed (0-8).
+    172                 NRF_GPIOTE->EVENTS_IN[u8Channel] = 0;   // Clear Channel Event.
+   \   0000002C   0x2000             MOVS     R0,#+0
+   \   0000002E   0x....             LDR      R1,??DataTable2_5  ;; 0x40006100
+   \   00000030   0xB2ED             UXTB     R5,R5
+   \   00000032   0x2204             MOVS     R2,#+4
+   \   00000034   0x4355             MULS     R5,R2,R5
+   \   00000036   0x5148             STR      R0,[R1, R5]
+    173                 G_abButtonDebounceActive[u8ButtonIndex] = true;
+   \   00000038   0x2001             MOVS     R0,#+1
+   \   0000003A   0x....             LDR      R1,??DataTable2_6
+   \   0000003C   0xB2E4             UXTB     R4,R4
+   \   0000003E   0x5508             STRB     R0,[R1, R4]
+    174                 G_au32ButtonDebounceTimeStart[u8ButtonIndex] = G_u32SystemTime1ms;
+   \   00000040   0x....             LDR      R0,??DataTable2_1
+   \   00000042   0x6800             LDR      R0,[R0, #+0]
+   \   00000044   0x....             LDR      R1,??DataTable2_7
+   \   00000046   0xB2E4             UXTB     R4,R4
+   \   00000048   0x2204             MOVS     R2,#+4
+   \   0000004A   0x4362             MULS     R2,R4,R2
+   \   0000004C   0x5088             STR      R0,[R1, R2]
+    175                 return;
+   \   0000004E   0xE001             B        ??GPIOTE_IRQHandler_3
+    176              }
+    177            }
+   \                     ??GPIOTE_IRQHandler_2: (+1)
+   \   00000050   0x1C6D             ADDS     R5,R5,#+1
+   \   00000052   0xE7DA             B        ??GPIOTE_IRQHandler_0
+    178          
+    179          } /* end GPIOTE_IRQHandler() */
+   \                     ??GPIOTE_IRQHandler_1: (+1)
+   \                     ??GPIOTE_IRQHandler_3: (+1)
+   \   00000054   0xBD70             POP      {R4-R6,PC}       ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2:
+   \   00000000   0x40011100         DC32     0x40011100
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_1:
+   \   00000000   0x........         DC32     G_u32SystemTime1ms
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_2:
+   \   00000000   0x........         DC32     G_u32SystemTime1s
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_3:
+   \   00000000   0x........         DC32     G_u32SystemFlags
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_4:
+   \   00000000   0x40006308         DC32     0x40006308
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_5:
+   \   00000000   0x40006100         DC32     0x40006100
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_6:
+   \   00000000   0x........         DC32     G_abButtonDebounceActive
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_7:
+   \   00000000   0x........         DC32     G_au32ButtonDebounceTimeStart
+    180          
+    181          
+    182          /*--------------------------------------------------------------------------------------------------------------------*/
+    183          /* End of File                                                                                                        */
+    184          /*--------------------------------------------------------------------------------------------------------------------*/
 
    Maximum stack usage in bytes:
 
    .cstack Function
    ------- --------
+      16   GPIOTE_IRQHandler
+        16   -> ButtonGetActiveColumn
        4   HardFault_Handler
-       0   InterruptsInitialize
+       8   InterruptsInitialize
+       4   RTC1_IRQHandler
+         4 __aeabi_uidivmod
+       0   SWI2_IRQHandler
        4   TIMER1_IRQHandler
 
 
@@ -170,17 +417,28 @@ Warning[Pe111]: statement is unreachable
 
    Bytes  Function/Label
    -----  --------------
+       4  ??DataTable2
+       4  ??DataTable2_1
+       4  ??DataTable2_2
+       4  ??DataTable2_3
+       4  ??DataTable2_4
+       4  ??DataTable2_5
+       4  ??DataTable2_6
+       4  ??DataTable2_7
+      86  GPIOTE_IRQHandler
        4  G_u32InterruptsFlags
        4  HardFault_Handler
-       2  InterruptsInitialize
+      72  InterruptsInitialize
+      46  RTC1_IRQHandler
+      16  SWI2_IRQHandler
        4  TIMER1_IRQHandler
 
  
-  4 bytes in section .bss
- 10 bytes in section .text
+   4 bytes in section .bss
+ 260 bytes in section .text
  
- 10 bytes of CODE memory
-  4 bytes of DATA memory
+ 260 bytes of CODE memory
+   4 bytes of DATA memory
 
 Errors: none
-Warnings: 2
+Warnings: none

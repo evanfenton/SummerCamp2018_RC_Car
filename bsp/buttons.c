@@ -7,8 +7,6 @@ Button functions and state machine.  The application handles all debouncing and 
 ------------------------------------------------------------------------------------------------------------------------
 API:
 Types:
-MPG1: The argument u32Button_ is either BUTTON0, BUTTON1, BUTTON2, or BUTTON3.  
-MPG1: The argument u32Button_ is either BUTTON0 or BUTTON1.  
 
 Public:
 bool IsButtonPressed(u32 u32Button_)
@@ -32,10 +30,6 @@ Configures the button system for the product including enabling button GPIO inte
 u32 GetButtonBitLocation(u8 u8Button_, ButtonPortType ePort_)
 Returns the location of the button within its port (should be required only for interrupt service routines).  
 
-DISCLAIMER: THIS CODE IS PROVIDED WITHOUT ANY WARRANTY OR GUARANTEES.  USERS MAY
-USE THIS CODE FOR DEVELOPMENT AND EXAMPLE PURPOSES ONLY.  ENGENUICS TECHNOLOGIES
-INCORPORATED IS NOT RESPONSIBLE FOR ANY ERRORS, OMISSIONS, OR DAMAGES THAT COULD
-RESULT FROM USING THIS FIRMWARE IN WHOLE OR IN PART.
 
 ***********************************************************************************************************************/
 
@@ -60,7 +54,7 @@ extern volatile u32 G_u32ApplicationFlags;     /* From main.c */
 
 /***********************************************************************************************************************
 Global variable definitions with scope limited to this local application.
-Variable names shall start with "Button_" and be declared as static.
+Variable names shall start with "Button_<type>" and be declared as static.
 ***********************************************************************************************************************/
 static fnCode_type Button_pfnStateMachine;                  /* The Button application state machine function pointer */
 
@@ -68,7 +62,7 @@ static ButtonStateType Button_aeCurrentState[TOTAL_BUTTONS];/* Current pressed s
 static ButtonStateType Button_aeNewState[TOTAL_BUTTONS];    /* New (pending) pressed state of button */
 static u32 Button_au32HoldTimeStart[TOTAL_BUTTONS];         /* System 1ms time when a button press started */
 static bool Button_abNewPress[TOTAL_BUTTONS];               /* Flags to indicate a button was pressed */    
-static u8 u8ActiveCol;                                      /* Current Active Button Column */                                                                                    
+static u8 Button_u8ActiveCol;                               /* Current Active Button Column */                                                                                    
 
 
 /***********************************************************************************************************************
@@ -207,7 +201,7 @@ Promises:
 */
 void ButtonInitialize(void)
 {
-  u8ActiveCol = 0;      // Set initial active col.
+  Button_u8ActiveCol = 0;      // Set initial active col.
   
   /* Setup default data for all of the buttons in the system */
   for(u8 i = 0; i < TOTAL_BUTTONS; i++)
@@ -230,6 +224,7 @@ void ButtonInitialize(void)
   
   /* Init complete: set function pointer and application flag */
   Button_pfnStateMachine = ButtonSM_Idle;
+  
  } /* end ButtonInitialize() */
 
 
@@ -254,60 +249,111 @@ void ButtonRunActiveState(void)
 } /* end ButtonRunActiveState */
 
 
-u8 Button_get_active_column(void)
+
+/*----------------------------------------------------------------------------------------------------------------------
+Function ButtonGetActiveColumn()
+
+Description:
+Accesses private data
+
+Requires:
+  - None
+
+Promises:
+  - Provides Button_u8ActiveCol
+*/
+u8 ButtonGetActiveColumn(void)
 {
-   return u8ActiveCol;
+   return Button_u8ActiveCol;
 }
 
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Private functions */
 /*--------------------------------------------------------------------------------------------------------------------*/
-static void Button_rotate_columns(void)
+
+/*----------------------------------------------------------------------------------------------------------------------
+Function ButtonGetActiveColumn()
+
+Description:
+Accesses private data
+
+Requires:
+  - None
+
+Promises:
+  - Advances the active column matrix
+*/
+static void ButtonRotateColumns(void)
 {
-   if (G_u32SystemTime1ms % BUTTON_COLUMN_SWITCH_TIME_MS)
+  if (G_u32SystemTime1ms % BUTTON_COLUMN_SWITCH_TIME_MS)
+  {
+   Button_u8ActiveCol++;
+   if (Button_u8ActiveCol >= 3)
    {
-     u8ActiveCol++;
-     if (u8ActiveCol >= 3)
-       u8ActiveCol = 0;
-     
-     switch (u8ActiveCol)
-     {
-        case 0:
-          nrf_gpio_pin_clear(BUTTON_COL1_PIN);
-          nrf_gpio_pin_set(BUTTON_COL2_PIN);
-          nrf_gpio_pin_set(BUTTON_COL3_PIN);
-          break;
-        case 1:
-          nrf_gpio_pin_clear(BUTTON_COL2_PIN);
-          nrf_gpio_pin_set(BUTTON_COL1_PIN);
-          nrf_gpio_pin_set(BUTTON_COL3_PIN);
-          break;
-        case 2:
-          nrf_gpio_pin_clear(BUTTON_COL3_PIN);
-          nrf_gpio_pin_set(BUTTON_COL1_PIN);
-          nrf_gpio_pin_set(BUTTON_COL2_PIN);
-          break;
-        default:
-          break;
-     }
+     Button_u8ActiveCol = 0;
    }
+   
+   switch (Button_u8ActiveCol)
+   {
+    case 0:
+      nrf_gpio_pin_clear(BUTTON_COL1_PIN);
+      nrf_gpio_pin_set(BUTTON_COL2_PIN);
+      nrf_gpio_pin_set(BUTTON_COL3_PIN);
+      break;
+      
+    case 1:
+      nrf_gpio_pin_clear(BUTTON_COL2_PIN);
+      nrf_gpio_pin_set(BUTTON_COL1_PIN);
+      nrf_gpio_pin_set(BUTTON_COL3_PIN);
+      break;
+      
+    case 2:
+      nrf_gpio_pin_clear(BUTTON_COL3_PIN);
+      nrf_gpio_pin_set(BUTTON_COL1_PIN);
+      nrf_gpio_pin_set(BUTTON_COL2_PIN);
+      break;
+      
+    default:
+      break;
+   }
+  }
 }
 
-static bool Button_is_still_pressed(u8 button)
+
+/*----------------------------------------------------------------------------------------------------------------------
+Function ButtonStillPressed()
+
+Description:
+Checks if a button is still pressed
+
+Requires:
+  - u8Button_ is the button of interest
+
+Promises:
+  - Checks if u8Button_ is currently pressed
+*/
+static bool ButtonStillPressed(u8 u8Button_)
 {
-   u8 row = (button - Button_get_active_column()) / 3;   // Row corresponding 
+   u8 u8Row = (u8Button_ - ButtonGetActiveColumn()) / 3;   // Row corresponding 
 
    // Map Row Index to Pin and check if pin is low (active low)
-   if (row == 0)
-      return (nrf_gpio_pin_read(BUTTON_ROW1_PIN) == 0);
-   else if (row == 1)
-      return (nrf_gpio_pin_read(BUTTON_ROW2_PIN) == 0);
-   else if (row == 2)
-      return (nrf_gpio_pin_read(BUTTON_ROW3_PIN) == 0);
+   if (u8Row == 0)
+   {
+     return (nrf_gpio_pin_read(BUTTON_ROW1_PIN) == 0);
+   }
+   else if (u8Row == 1)
+   {
+     return (nrf_gpio_pin_read(BUTTON_ROW2_PIN) == 0);
+   }
+   else if (u8Row == 2)
+   {
+     return (nrf_gpio_pin_read(BUTTON_ROW3_PIN) == 0);
+   }
 
    return false;
-}
+   
+} /* end ButtonStillPressed() */
 
 
 /***********************************************************************************************************************
@@ -321,25 +367,26 @@ maintaining the global button states.
 /* Do nothing but wait for a debounce time to start */
 static void ButtonSM_Idle(void)                
 {
-  bool is_any_button_debouncing = false;
+  bool bIsAnyButtonDebouncing = false;
+  u8 u8Status;
   
   for(u8 i = 0; i < TOTAL_BUTTONS; i++)
   {
     if(G_abButtonDebounceActive[i])
     {
-      is_any_button_debouncing = true;
+      bIsAnyButtonDebouncing = true;
       Button_pfnStateMachine = ButtonSM_ButtonActive;
     }
   }
    
   // Check that no button is debouncing.
-  if (!is_any_button_debouncing)
+  if (!bIsAnyButtonDebouncing)
   {
-     u8 status;
-     SystemEnterCriticalSection(&status);
-     Button_rotate_columns();
-     SystemExitCriticalSection(status);  
+     SystemEnterCriticalSection(&u8Status);
+     ButtonRotateColumns();
+     SystemExitCriticalSection(u8Status);  
   }
+  
 } /* end ButtonSM_Idle(void) */
 
 
@@ -359,7 +406,7 @@ static void ButtonSM_ButtonActive(void)
       
       if( IsTimeUp((u32*)&G_au32ButtonDebounceTimeStart[i], BUTTON_DEBOUNCE_TIME) )
       {
-         if(Button_is_still_pressed(i))
+         if(ButtonStillPressed(i))
          {
             Button_aeNewState[i] = PRESSED;
          }
@@ -385,7 +432,10 @@ static void ButtonSM_ButtonActive(void)
       } /* end if( IsTimeUp...) */
     } /* end if(G_abButtonDebounceActive[index]) */
   } /* end for i */
+
 } /* end ButtonSM_ButtonActive() */
+
+
 
 
 

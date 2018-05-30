@@ -46,13 +46,16 @@ Includes
 #include "nrf_assert.h"
 #include "nrf_delay.h"
 #include "nrf_error.h"
+#include "nrf_gpio.h"
+#include "nrf_gpiote.h"
 #include "nrf_soc.h"
 #include "nrf_sdm.h"
+
 
 #include "ant_interface.h"
 #include "ant_parameters.h"
 #include "ant_error.h"
-#include "app_error.h"
+//#include "app_error.h"
 //#include "appconfig.h"
 //#include "boardconfig.h"
 //#include "command.h"
@@ -60,7 +63,19 @@ Includes
 //#include "serial.h"
 //#include "system.h"
 //#include "ant_boot_settings_api.h"
-//#include "soc_integration.h"
+#include "soc_integration.h"
+#include "ant_integration.h"
+#include "ble_integration.h"
+#include "bleperipheral.h"
+#include "ble.h"
+#include "ble_gap.h"
+#include "ble_gatts.h"
+#include "ble_types.h"
+#include "ble_advdata.h"
+#include "ble_srv_common.h"
+#include "bleperipheral_engenuics.h"
+
+
 
 /* MPG nRF51422 implementation headers */
 #include "interrupts.h"
@@ -71,8 +86,9 @@ Includes
 #include "anttt-ehdw-04.h"
 
 /* Driver header files */
-#include "leds_anttt.h" 
 #include "buttons.h"
+#include "leds_anttt.h" 
+
 
 /* Application header files */
 #include "anttt.h"
@@ -81,16 +97,6 @@ Includes
 !!!!! External device peripheral assignments
 ***********************************************************************************************************************/
 
-
-/*----------------------------------------------------------------------------------------------------------------------
-%BUTTON% Button Configuration                                                                                                  
-------------------------------------------------------------------------------------------------------------------------*/
-
-//#define TOTAL_BUTTONS         (u8)4       /* Total number of Buttons in the system */
-
-/* All buttons on each port must be ORed together here: set to 0 if no buttons on the port */
-#define GPIOA_BUTTONS         (u32)( PA_17_BUTTON_F )
-#define GPIOB_BUTTONS         (u32)( PB_00_BUTTON_B | PB_01_BUTTON_L | PB_02_BUTTON_R )
 
 
 #endif /* __CONFIG_H */

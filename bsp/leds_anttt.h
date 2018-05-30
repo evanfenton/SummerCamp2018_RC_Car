@@ -54,18 +54,6 @@ typedef struct
 ******************************************************************************/
 #define TOTAL_LEDS            (u8)21        /* Total number of LEDs in the system */
 
-                                            /* for RC car controller LED's */
-#define FRONT_LED              HOME2        
-#define BACK_LED               HOME8
-#define LEFT_LED               HOME4
-#define RIGHT_LED              HOME6
-                                            /* for turning motors on and off */
-#define EN_LEFT                HOME3
-#define EN_RIGHT               AWAY3
-                                            /* for indicating the direction of motors spin */
-#define IN_TOP                 HOME1
-#define IN_BOT                 AWAY1
-
 
 /******************************************************************************
 * Function Declarations

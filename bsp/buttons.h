@@ -33,14 +33,6 @@ Constants / Definitions
 #define BUTTON_COL2_PIN                 P0_15_INDEX
 #define BUTTON_COL3_PIN                 P0_23_INDEX
 
-
-                                                      /* for RC car controller */
-#define BUTTON_F                        (u32)2      
-#define BUTTON_B                        (u32)8
-#define BUTTON_L                        (u32)4
-#define BUTTON_R                        (u32)6
-
-
 /***********************************************************************************************************************
 Function Declarations
 ***********************************************************************************************************************/
@@ -58,12 +50,12 @@ bool IsButtonHeld(u32 u32Button_, u32 u32ButtonHeldTime_);
 /*--------------------------------------------------------------------------------------------------------------------*/
 void ButtonInitialize(void);                        
 void ButtonRunActiveState(void);
-u8 Button_get_active_column(void);
+u8 ButtonGetActiveColumn(void);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Private functions                                                                                                  */
 /*--------------------------------------------------------------------------------------------------------------------*/
-static void Button_rotate_columns(void);
+static void ButtonRotateColumns(void);
 
 /***********************************************************************************************************************
 State Machine Declarations
