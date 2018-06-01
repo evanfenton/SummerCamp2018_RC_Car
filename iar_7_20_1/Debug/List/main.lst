@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        30/May/2018  15:35:55
+# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        01/Jun/2018  08:56:24
 # Copyright 1999-2014 IAR Systems AB.
 #
 #    Cpu mode     =  thumb
@@ -212,11 +212,11 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\application\main.c
    \   00000064   0x.... 0x....      BL       LedUpdate
      97              
      98              /* State Machines */
-     99              ANTTT_SM();
+     99              //ANTTT_SM();
+    100              SCRCC_SM();
    \   00000068   0x4806             LDR      R0,??main_0+0xC
    \   0000006A   0x6800             LDR      R0,[R0, #+0]
    \   0000006C   0x4780             BLX      R0
-    100              //SCRCC_SM();
     101              ButtonRunActiveState();
    \   0000006E   0x.... 0x....      BL       ButtonRunActiveState
     102             
@@ -228,7 +228,7 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\application\main.c
    \   00000078   0x........         DC32     G_u32SystemFlags
    \   0000007C   0x40500440         DC32     0x40500440
    \   00000080   0x50000508         DC32     0x50000508
-   \   00000084   0x........         DC32     ANTTT_SM
+   \   00000084   0x........         DC32     SCRCC_SM
     105            } /* end while(1) main super loop */
     106            
     107          } /* end main() */

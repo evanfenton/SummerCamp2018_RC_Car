@@ -248,23 +248,24 @@ void LedInitialize(void)
   LedNumberType aeLedSequenceAway[] = {AWAY1, AWAY4, AWAY7, AWAY8, AWAY9, AWAY6, AWAY3, AWAY2};
   
   /* All status lights on */
-  //LedOn(STATUS_RED);
-  //LedOn(STATUS_YLW);
-  //LedOn(STATUS_GRN);
+  LedOn(STATUS_RED);
+  LedOn(STATUS_YLW);
+  LedOn(STATUS_GRN);
 
   /* For RC Car startup */
   
   LedNumberType aeLedSequenceDirections[] = {FRONT_LED, RIGHT_LED, BACK_LED, LEFT_LED};
   
   
-
-  for(u8 i=0; i<4; i++){
+  for(u8 n=0; n<3; n++){
+    for(u8 i=0; i<4; i++){
     
-    LedOn(aeLedSequenceDirections[i]);
+      LedOn(aeLedSequenceDirections[i]);
      
-    for(u32 j = 0; j < 200000; j++);
+      for(u32 j = 0; j < 200000; j++);
     
-    LedOff(aeLedSequenceDirections[i]);
+      LedOff(aeLedSequenceDirections[i]);
+    }
   }
   
 #if 0  

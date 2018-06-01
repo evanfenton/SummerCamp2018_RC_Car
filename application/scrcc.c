@@ -61,6 +61,12 @@ Promises:
 */
 void ScrccInitialize(void)
 {
+  LedOn(STATUS_RED);
+  LedOn(STATUS_YLW);
+  LedOn(STATUS_GRN);
+  
+  nrf_gpio_pin_clear(16);             //FIND OUT WHAT THIS IS 
+  
   SCRCC_SM = &ScrccSM_Idle;
   
 } /* end ScrccInitialize(void) */

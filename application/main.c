@@ -83,7 +83,7 @@ void main(void)
   bleperipheralInitialize();
   
   /* Application initialization */
-  AntttInitialize();
+  //AntttInitialize();
   ScrccInitialize();
   
   /* Exit initialization */
@@ -96,8 +96,8 @@ void main(void)
     LedUpdate();
     
     /* State Machines */
-    ANTTT_SM();
-    //SCRCC_SM();
+    //ANTTT_SM();
+    SCRCC_SM();
     ButtonRunActiveState();
    
     /* System sleep*/
