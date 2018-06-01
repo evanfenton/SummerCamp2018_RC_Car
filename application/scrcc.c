@@ -61,6 +61,21 @@ Promises:
 */
 void ScrccInitialize(void)
 {
+  
+#if 1
+  /* TEST CODE TO TEST BUTTONS */
+  for (u8 i = 0; i < TOTAL_BUTTONS; i++)
+  {
+   if (1)//WasButtonPressed(i))
+   {
+     LedToggle(STATUS_RED);
+     //ButtonAcknowledge(i);
+     
+   }
+  }
+#endif
+  
+  
   LedOn(STATUS_RED);
   LedOn(STATUS_YLW);
   LedOn(STATUS_GRN);
@@ -244,8 +259,9 @@ static void ScrccSM_Active(void)
   if(IsButtonPressed(BUTTON_F)){
     Scrcc_Forward();
   }
-  else if(IsButtonPressed(BUTTON_B)){
+  else if(WasButtonPressed(BUTTON_B)){
     Scrcc_Backward();
+    ButtonAcknowledge(BUTTON_B);
   }
   else if(IsButtonPressed(BUTTON_L)){
     Scrcc_LeftTurn();

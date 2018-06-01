@@ -20,7 +20,7 @@ Stop=1
 Freq=10000000
 MultiCoreRunAll=1
 [DebugChecksum]
-Checksum=599288793
+Checksum=1407229196
 [CodeCoverage]
 Enabled=_ 0
 [Exceptions]
@@ -52,6 +52,12 @@ ITMportsEnable=0
 ITMportsTermIO=0
 ITMportsLogFile=0
 ITMlogFile=$PROJ_DIR$\ITM.log
+[Trace1]
+Enabled=0
+ShowSource=1
+[Trace2]
+Enabled=0
+ShowSource=0
 [SWOTraceWindow]
 PcSampling=0
 InterruptLogs=0
@@ -81,6 +87,27 @@ GraphEnabled=0
 ShowTimeLog=1
 ShowTimeSum=1
 SumSortOrder=0
+[Disassemble mode]
+mode=0
+[Breakpoints2]
+Bp0=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\application\main.c}.101.5" 0 0 1 "" 0 "" 0
+Bp1=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.259.3" 0 0 1 "" 0 "" 0
+Bp2=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.262.8" 0 0 1 "" 0 "" 0
+Bp3=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.262.8" 0 0 1 "" 0 "" 0
+Bp4=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.259.3" 0 0 1 "" 0 "" 0
+Bp5=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.92.3" 0 0 1 "" 0 "" 0
+Bp6=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.122.3" 0 0 1 "" 0 "" 0
+Bp7=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.67.11" 0 0 1 "" 0 "" 0
+Bp8=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.71.6" 0 0 1 "" 0 "" 0
+Bp9=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.67.18" 0 0 1 "" 0 "" 0
+Bp10=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.263.5" 0 0 1 "" 0 "" 0
+Bp11=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.267.5" 0 0 1 "" 0 "" 0
+Bp12=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.420.9" 0 0 1 "" 0 "" 0
+Bp13=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.422.11" 0 0 1 "" 0 "" 0
+Bp14=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.422.11" 0 0 1 "" 0 "" 0
+Bp15=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.425.13" 0 0 1 "" 0 "" 0
+Bp16=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.425.13" 0 0 1 "" 0 "" 0
+Count=17
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -88,6 +115,9 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
+[Aliases]
+Count=0
+SuppressDialog=0
 [CallStackLog]
 Enabled=0
 [DriverProfiling]
@@ -96,14 +126,3 @@ Mode=1
 Graph=0
 Symbiont=0
 Exclusions=
-[Disassemble mode]
-mode=0
-[Breakpoints2]
-Bp0=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application\anttt.c}.220.5" 0 0 1 "" 0 "" 0
-Bp1=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application}.160.3" 0 0 1 "" 0 "" 0
-Bp2=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application}.174.3" 0 0 1 "" 0 "" 0
-Bp3=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\application\anttt.c}.232.4" 0 0 1 "" 0 "" 0
-Count=4
-[Aliases]
-Count=0
-SuppressDialog=0

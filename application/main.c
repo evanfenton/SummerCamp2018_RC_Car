@@ -79,8 +79,8 @@ void main(void)
   ButtonInitialize();
 
   ANTIntegrationInitialize();
-  BLEIntegrationInitialize();
-  bleperipheralInitialize();
+  //BLEIntegrationInitialize();
+  //bleperipheralInitialize();
   
   /* Application initialization */
   //AntttInitialize();
@@ -94,11 +94,12 @@ void main(void)
   {
     SocIntegrationHandler();
     LedUpdate();
+    ButtonRunActiveState();
     
     /* State Machines */
     //ANTTT_SM();
     SCRCC_SM();
-    ButtonRunActiveState();
+    
    
     /* System sleep*/
     SystemSleep();

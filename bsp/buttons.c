@@ -244,7 +244,8 @@ Promises:
 */
 void ButtonRunActiveState(void)
 {
-  Button_pfnStateMachine();
+  //Button_pfnStateMachine();
+  ButtonSM_ButtonActive();
 
 } /* end ButtonRunActiveState */
 
