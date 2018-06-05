@@ -20,7 +20,7 @@ Stop=1
 Freq=10000000
 MultiCoreRunAll=1
 [DebugChecksum]
-Checksum=-1161893806
+Checksum=-1484757925
 [CodeCoverage]
 Enabled=_ 0
 [Exceptions]
@@ -99,30 +99,8 @@ Exclusions=
 [Disassemble mode]
 mode=0
 [Breakpoints2]
-Bp0=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.262.8" 0 0 1 "" 0 "" 0
-Bp1=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.263.5" 0 0 1 "" 0 "" 0
-Bp2=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.263.5" 0 0 1 "" 0 "" 0
-Bp3=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.204.3" 0 0 1 "" 0 "" 0
-Bp4=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.416.13" 0 0 1 "" 0 "" 0
-Bp5=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.420.9" 0 0 1 "" 0 "" 0
-Bp6=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.425.13" 0 0 1 "" 0 "" 0
-Bp7=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.423.11" 0 0 1 "" 0 "" 0
-Bp8=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.229.3" 0 0 1 "" 0 "" 0
-Bp9=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.410.10" 0 0 1 "" 0 "" 0
-Bp10=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.339.7" 0 0 1 "" 0 "" 0
-Bp11=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.406.7" 0 0 1 "" 0 "" 0
-Bp12=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.67.11" 0 0 1 "" 0 "" 0
-Bp13=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.71.6" 0 0 1 "" 0 "" 0
-Bp14=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.72.6" 0 0 1 "" 0 "" 0
-Bp15=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.69.4" 0 0 1 "" 0 "" 0
-Bp16=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\interrupts.c}.166.5" 0 0 1 "" 0 "" 0
-Bp17=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\interrupts.c}.173.8" 0 0 1 "" 0 "" 0
-Bp18=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.408.7" 0 0 1 "" 0 "" 0
-Bp19=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\buttons.c}.412.13" 0 0 1 "" 0 "" 0
-Bp20=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.259.3" 0 0 1 "" 0 "" 0
-Bp21=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\application\scrcc.c}.260.5" 0 0 1 "" 0 "" 0
-Bp22=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\interrupts.c}.160.3" 0 0 1 "" 0 "" 0
-Count=23
+Bp0=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\bsp\interrupts.c}.160.3" 0 0 1 "" 0 "" 0
+Count=1
 [Aliases]
 Count=0
 SuppressDialog=0
