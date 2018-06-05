@@ -75,6 +75,11 @@ void ScrccInitialize(void)
   }
 #endif
   
+  //Anttt_reset_rx_buffer();
+//  Anttt_u16HomeState = 0;
+//  Anttt_u16AwayState = 0;
+//  ANTTT_SM = &AntttSM_Idle;
+//  Anttt_bPendingResponse = false;
   
   LedOn(STATUS_RED);
   LedOn(STATUS_YLW);
