@@ -54,6 +54,17 @@ typedef struct
 ******************************************************************************/
 #define TOTAL_LEDS            (u8)21        /* Total number of LEDs in the system */
 
+#define FRONT_LED             AWAY2
+#define BACK_LED              AWAY8
+#define LEFT_LED              AWAY4
+#define RIGHT_LED             AWAY6
+
+#define EN_LEFT               AWAY1
+#define EN_RIGHT              HOME1
+
+#define IN_TOP                AWAY3
+#define IN_BOT                HOME3
+
 
 /******************************************************************************
 * Function Declarations

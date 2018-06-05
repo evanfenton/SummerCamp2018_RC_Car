@@ -33,6 +33,12 @@ Constants / Definitions
 #define BUTTON_COL2_PIN                 P0_15_INDEX
 #define BUTTON_COL3_PIN                 P0_23_INDEX
 
+
+#define BUTTON_F                        (u8)1
+#define BUTTON_B                        (u8)7
+#define BUTTON_L                        (u8)3
+#define BUTTON_R                        (u8)5
+
 /***********************************************************************************************************************
 Function Declarations
 ***********************************************************************************************************************/

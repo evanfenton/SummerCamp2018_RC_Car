@@ -20,6 +20,7 @@ extern volatile u32 G_u32SystemTime1ms;                /* From board-specific so
 extern volatile u32 G_u32SystemTime1s;                 /* From board-specific source file */
 
 extern fnCode_type ANTTT_SM;
+extern fnCode_type SCRCC_SM;
 
 /***********************************************************************************************************************
 Global variable definitions with scope limited to this local application.
@@ -82,7 +83,8 @@ void main(void)
   bleperipheralInitialize();
   
   /* Application initialization */
-  AntttInitialize();
+  //AntttInitialize();
+  ScrccInitialize();
   
   /* Exit initialization */
   G_u32SystemFlags &= ~_SYSTEM_INITIALIZING;
@@ -94,7 +96,8 @@ void main(void)
     LedUpdate();
     
     /* State Machines */
-    ANTTT_SM();
+    //ANTTT_SM();
+    SCRCC_SM();
     ButtonRunActiveState();
    
     /* System sleep*/

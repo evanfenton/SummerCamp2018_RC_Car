@@ -325,6 +325,9 @@
         <name>$PROJ_DIR$\..\application\main.h</name>
       </file>
       <file>
+        <name>$PROJ_DIR$\..\..\..\..\Desktop\scrcc_files\scrcc.h</name>
+      </file>
+      <file>
         <name>$PROJ_DIR$\..\application\typedefs.h</name>
       </file>
     </group>
@@ -338,6 +341,9 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\application\main.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Desktop\scrcc_files\scrcc.c</name>
       </file>
     </group>
   </group>
