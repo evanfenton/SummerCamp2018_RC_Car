@@ -66,10 +66,10 @@ void ScrccInitialize(void)
   /* TEST CODE TO TEST BUTTONS */
   for (u8 i = 0; i < TOTAL_BUTTONS; i++)
   {
-   if (1)//WasButtonPressed(i))
+   if (WasButtonPressed(i))
    {
      LedToggle(STATUS_RED);
-     //ButtonAcknowledge(i);
+     ButtonAcknowledge(i);
      
    }
   }
@@ -234,7 +234,7 @@ static void ScrccSM_Idle(void)
   LedPWM(EN_LEFT, LED_PWM_0);              /* make sure motors are off */
   LedPWM(EN_RIGHT, LED_PWM_0);
   
-  //ButtonInitialize();
+  ButtonInitialize();
   
   SCRCC_SM = ScrccSM_Active;
   
@@ -259,9 +259,8 @@ static void ScrccSM_Active(void)
   if(IsButtonPressed(BUTTON_F)){
     Scrcc_Forward();
   }
-  else if(WasButtonPressed(BUTTON_B)){
+  else if(IsButtonPressed(BUTTON_B)){
     Scrcc_Backward();
-    ButtonAcknowledge(BUTTON_B);
   }
   else if(IsButtonPressed(BUTTON_L)){
     Scrcc_LeftTurn();
@@ -269,6 +268,58 @@ static void ScrccSM_Active(void)
   else if(IsButtonPressed(BUTTON_R)){
     Scrcc_RightTurn();
   }
+  else{
+    SCRCC_SM = ScrccSM_Idle;
+  }
+  
+  /* For the RC Car student guide
+  
+  Within the Super Loop 
+  
+  if(                               )
+  {
+    GoForward();
+  }
+  else if(                                )
+  {
+    GoBackward();
+  }
+  else if(                                )
+  {
+    TurnLeft();
+  }
+  else if(                                )
+  {
+    TurnRight();
+  }
+  else
+  {
+    NoAction();
+  }
+  
+  */
+  
+  /* For the RC Car function section
+  
+  Fill in with the name of your function 
+  
+  void                  (void)
+  {
+    
+    
+  
+    
+  
+  
+   
+             
+  
+  
+  
+  
+  
+  
+  }  end */
   
   
 } /* end ScrccSM_Active(void) */

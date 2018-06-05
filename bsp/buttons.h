@@ -35,10 +35,10 @@ Constants / Definitions
 
 
                                                       /* for RC car controller */
-#define BUTTON_F                        (u32)2      
-#define BUTTON_B                        (u32)8
-#define BUTTON_L                        (u32)4
-#define BUTTON_R                        (u32)6
+#define BUTTON_F                        (u32)1      
+#define BUTTON_B                        (u32)7
+#define BUTTON_L                        (u32)3
+#define BUTTON_R                        (u32)5
 
 /***********************************************************************************************************************
 Function Declarations

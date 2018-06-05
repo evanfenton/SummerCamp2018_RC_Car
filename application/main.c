@@ -77,6 +77,8 @@ void main(void)
   /* Driver initialization */
   LedInitialize();
   ButtonInitialize();
+  
+  for(u32 j = 0; j < 2000000; j++);
 
   ANTIntegrationInitialize();
   //BLEIntegrationInitialize();

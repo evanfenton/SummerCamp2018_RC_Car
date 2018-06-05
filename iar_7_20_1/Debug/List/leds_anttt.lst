@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        01/Jun/2018  15:57:15
+# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        04/Jun/2018  16:47:52
 # Copyright 1999-2014 IAR Systems AB.
 #
 #    Cpu mode     =  thumb
@@ -568,11 +568,11 @@ Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
    \   00000034   0x6002             STR      R2,[R0, #0]
     258            
     259            
-    260            for(u8 n=0; n<3; n++){
+    260            for(u8 n=0; n<10; n++){
    \   00000036   0x2400             MOVS     R4,#+0
    \                     ??LedInitialize_0: (+1)
    \   00000038   0xB2E4             UXTB     R4,R4
-   \   0000003A   0x2C03             CMP      R4,#+3
+   \   0000003A   0x2C0A             CMP      R4,#+10
    \   0000003C   0xDA17             BGE      ??LedInitialize_1
     261              for(u8 i=0; i<4; i++){
    \   0000003E   0x2500             MOVS     R5,#+0

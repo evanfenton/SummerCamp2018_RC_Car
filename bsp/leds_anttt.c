@@ -257,7 +257,7 @@ void LedInitialize(void)
   LedNumberType aeLedSequenceDirections[] = {FRONT_LED, RIGHT_LED, BACK_LED, LEFT_LED};
   
   
-  for(u8 n=0; n<3; n++){
+  for(u8 n=0; n<10; n++){
     for(u8 i=0; i<4; i++){
     
       LedOn(aeLedSequenceDirections[i]);
