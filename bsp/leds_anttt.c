@@ -244,8 +244,6 @@ Promises:
 */
 void LedInitialize(void)
 {
-  LedNumberType aeLedSequenceHome[] = {HOME1, HOME2, HOME3, HOME6, HOME9, HOME8, HOME7, HOME4};
-  LedNumberType aeLedSequenceAway[] = {AWAY1, AWAY4, AWAY7, AWAY8, AWAY9, AWAY6, AWAY3, AWAY2};
   
   /* All status lights on */
   LedOn(STATUS_RED);
@@ -267,50 +265,6 @@ void LedInitialize(void)
       LedOff(aeLedSequenceDirections[i]);
     }
   }
-  
-#if 0  
- /* Picture mode */
-  LedOn(HOME1);
-  LedOn(HOME5);
-  LedOn(HOME7);
-  LedOn(HOME2);
-  LedOn(AWAY9);
-  LedOn(AWAY4);
-  LedOn(AWAY6);
-  LedOn(AWAY8);
-
-  while(1);
-
-#endif
-  LedOff(HOME5);
-  LedOn(AWAY5);
-
-  
-#if 0
-  /* Sequentially light up the LEDs (blocking is allowed during init)*/
-  for(u8 i = 0; i < 4; i++)
-  {
-    LedToggle(HOME5);
-    LedToggle(AWAY5);
-    LedOn(aeLedSequenceDirections[i]);
-    //LedOn(aeLedSequenceHome[i]);
-    LedOn(aeLedSequenceAway[i]);
-    
-    for(u32 j = 0; j < 200000; j++);
-    
-    LedOff(aeLedSequenceDirections[i]);
-    //LedOff(aeLedSequenceHome[i]);
-    LedOff(aeLedSequenceAway[i]);
-  }
-
-
-  /* Sequentially light up the LEDs */
-  for(u8 i = 0; i < 18; i++)
-  {
-    LedOn(aeLedSequence[i]);
-    for(u32 j = 0; j < 300000; j++);
-  }
-#endif
 
   /* Pause for show */
   for(u32 i = 0; i < 2000000; i++);
