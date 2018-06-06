@@ -19,7 +19,7 @@
           
           
           
-        <Column0>256</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>447</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Disassembly>
         <col-names>
@@ -36,13 +36,13 @@
       <ShowCodeCoverage>1</ShowCodeCoverage><ShowInstrProfiling>1</ShowInstrProfiling></Disassembly>
       <Breakpoints>
         <col-names>
-          <item>Breakpoint</item>
-          <item>_I0</item>
-        </col-names>
+          
+          
+        <item>Breakpoint</item><item>_I0</item></col-names>
         <col-widths>
-          <item>500</item>
-          <item>35</item>
-        </col-widths>
+          
+          
+        <item>500</item><item>35</item></col-widths>
       </Breakpoints>
       <Memory>
         <FindDirection>1</FindDirection>
@@ -69,20 +69,20 @@
       <Register/>
       <WATCH_1>
         <expressions>
-          <item/>
-        </expressions>
+          
+        <item>G_abButtonDebounceActive[i]</item><item/></expressions>
         <col-names>
-          <item>Expression</item>
-          <item>Location</item>
-          <item>Type</item>
-          <item>Value</item>
-        </col-names>
+          
+          
+          
+          
+        <item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names>
         <col-widths>
-          <item>100</item>
-          <item>150</item>
-          <item>100</item>
-          <item>100</item>
-        </col-widths>
+          
+          
+          
+          
+        <item>100</item><item>150</item><item>100</item><item>100</item></col-widths>
       </WATCH_1>
       <WATCH_2>
         <expressions>
@@ -181,7 +181,7 @@
         <vars>1</vars>
         <offset>0</offset>
       </STACK_1>
-    </Static>
+    <Find-in-Files><ColumnWidth0>281</ColumnWidth0><ColumnWidth1>46</ColumnWidth1><ColumnWidth2>421</ColumnWidth2><ColumnWidth3>187</ColumnWidth3></Find-in-Files></Static>
     <Windows>
       
       
@@ -207,7 +207,7 @@
             <TabName>Breakpoints</TabName>
             <Factory>Breakpoints</Factory>
           </Tab>
-        </Tabs>
+        <Tab><Identity>TabID-23265-18125</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs>
         
       <SelectedTab>0</SelectedTab></Wnd3><Wnd5>
         <Tabs>
@@ -290,7 +290,7 @@
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd8><Wnd9>
+      <SelectedTab>1</SelectedTab></Wnd8><Wnd9>
         <Tabs>
           <Tab>
             <Identity>TabID-19308-28386</Identity>
@@ -326,14 +326,14 @@
       
       
       
-    <Pane/><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\application\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>24</YPos2><SelStart2>2719</SelStart2><SelEnd2>2719</SelEnd2></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Desktop\scrcc_files\scrcc.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>259</YPos2><SelStart2>7548</SelStart2><SelEnd2>7675</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\bsp\buttons.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>352</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\bsp\leds_anttt.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>175</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\application\anttt.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>285</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\bsp\interrupts.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>128</YPos2><SelStart2>6308</SelStart2><SelEnd2>6308</SelEnd2></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-02618718><key>iaridepm.enu1</key></Toolbar-02618718><Toolbar-1D115B08><key>debuggergui.enu1</key></Toolbar-1D115B08></Sizes></Row0><Row1><Sizes><Toolbar-1D1158B0><key>armjlink.enu1</key></Toolbar-1D1158B0></Sizes></Row1></Top><Left><Row0><Sizes><Wnd5><Rect><Top>-2</Top><Left>-2</Left><Bottom>758</Bottom><Right>330</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>213</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>205202</sizeHorzCY><sizeVertCX>172917</sizeVertCX><sizeVertCY>732177</sizeVertCY></Rect></Wnd5></Sizes></Row0></Left><Right><Row0><Sizes><Wnd8><Rect><Top>-2</Top><Left>-2</Left><Bottom>403</Bottom><Right>398</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>213</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>205202</sizeHorzCY><sizeVertCX>208333</sizeVertCX><sizeVertCY>390173</sizeVertCY></Rect></Wnd8><Wnd9><Rect><Top>0</Top><Left>0</Left><Bottom>0</Bottom><Right>7</Right><x>-2</x><y>401</y><xscreen>200</xscreen><yscreen>213</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>205202</sizeHorzCY><sizeVertCX>208333</sizeVertCX><sizeVertCY>343931</sizeVertCY></Rect></Wnd9></Sizes></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>211</Bottom><Right>961</Right><x>-2</x><y>-2</y><xscreen>963</xscreen><yscreen>213</yscreen><sizeHorzCX>501563</sizeHorzCX><sizeHorzCY>205202</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>205202</sizeVertCY></Rect></Wnd3><Wnd7><Rect><Top>0</Top><Left>0</Left><Bottom>0</Bottom><Right>0</Right><x>959</x><y>-2</y><xscreen>963</xscreen><yscreen>213</yscreen><sizeHorzCX>501563</sizeHorzCX><sizeHorzCY>205202</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>205202</sizeVertCY></Rect></Wnd7></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00CF8718><key>iaridepm.enu1</key></Toolbar-00CF8718><Toolbar-1B35D358><key>debuggergui.enu1</key></Toolbar-1B35D358></Sizes></Row0><Row1><Sizes><Toolbar-1B35D100><key>armjlink.enu1</key></Toolbar-1B35D100></Sizes></Row1></Top><Left><Row0><Sizes><Wnd5><Rect><Top>-2</Top><Left>-2</Left><Bottom>850</Bottom><Right>521</Right><x>-2</x><y>-2</y><xscreen>315</xscreen><yscreen>341</yscreen><sizeHorzCX>164063</sizeHorzCX><sizeHorzCY>328516</sizeHorzCY><sizeVertCX>272396</sizeVertCX><sizeVertCY>820809</sizeVertCY></Rect></Wnd5></Sizes></Row0></Left><Right><Row0><Sizes><Wnd8><Rect><Top>-2</Top><Left>-2</Left><Bottom>463</Bottom><Right>629</Right><x>-2</x><y>-2</y><xscreen>315</xscreen><yscreen>341</yscreen><sizeHorzCX>164063</sizeHorzCX><sizeHorzCY>328516</sizeHorzCY><sizeVertCX>328646</sizeVertCX><sizeVertCY>447977</sizeVertCY></Rect></Wnd8><Wnd9><Rect><Top>0</Top><Left>0</Left><Bottom>0</Bottom><Right>7</Right><x>-2</x><y>461</y><xscreen>315</xscreen><yscreen>341</yscreen><sizeHorzCX>164063</sizeHorzCX><sizeHorzCY>328516</sizeHorzCY><sizeVertCX>328646</sizeVertCX><sizeVertCY>374759</sizeVertCY></Rect></Wnd9></Sizes></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>119</Bottom><Right>961</Right><x>-2</x><y>-2</y><xscreen>963</xscreen><yscreen>121</yscreen><sizeHorzCX>501563</sizeHorzCX><sizeHorzCY>116570</sizeHorzCY><sizeVertCX>164063</sizeVertCX><sizeVertCY>328516</sizeVertCY></Rect></Wnd3><Wnd7><Rect><Top>-2</Top><Left>959</Left><Bottom>119</Bottom><Right>1922</Right><x>959</x><y>-2</y><xscreen>963</xscreen><yscreen>121</yscreen><sizeHorzCX>501563</sizeHorzCX><sizeHorzCY>116570</sizeHorzCY><sizeVertCX>164063</sizeVertCX><sizeVertCY>328516</sizeVertCY></Rect></Wnd7></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Project>
 

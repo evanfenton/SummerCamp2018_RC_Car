@@ -54,7 +54,8 @@ bool IsButtonHeld(u32 u32Button_, u32 u32ButtonHeldTime_);
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Protected functions                                                                                                */
 /*--------------------------------------------------------------------------------------------------------------------*/
-void ButtonInitialize(void);                        
+void ButtonInitialize(void);
+void ButtonTesting(void);
 void ButtonRunActiveState(void);
 u8 ButtonGetActiveColumn(void);
 

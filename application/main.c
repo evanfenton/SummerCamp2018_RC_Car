@@ -20,6 +20,7 @@ extern volatile u32 G_u32SystemTime1ms;                /* From board-specific so
 extern volatile u32 G_u32SystemTime1s;                 /* From board-specific source file */
 
 extern fnCode_type ANTTT_SM;
+extern volatile bool ButtonTestDone;
 extern fnCode_type SCRCC_SM;
 
 /***********************************************************************************************************************
@@ -77,6 +78,8 @@ void main(void)
   /* Driver initialization */
   LedInitialize();
   ButtonInitialize();
+  
+  ButtonTesting();
 
   ANTIntegrationInitialize();
   BLEIntegrationInitialize();
@@ -85,6 +88,7 @@ void main(void)
   /* Application initialization */
   //AntttInitialize();
   ScrccInitialize();
+  
   
   /* Exit initialization */
   G_u32SystemFlags &= ~_SYSTEM_INITIALIZING;
@@ -97,7 +101,14 @@ void main(void)
     
     /* State Machines */
     //ANTTT_SM();
-    SCRCC_SM();
+    
+    if(ButtonTestDone){
+      SCRCC_SM();
+    }
+    else{
+      ButtonTesting();
+    }
+    
     ButtonRunActiveState();
    
     /* System sleep*/

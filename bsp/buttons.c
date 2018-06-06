@@ -43,6 +43,8 @@ All Global variable names shall start with "G_<type>Button"
 volatile bool G_abButtonDebounceActive[TOTAL_BUTTONS];           /* Flags for buttons being debounced */
 volatile u32 G_au32ButtonDebounceTimeStart[TOTAL_BUTTONS];       /* Button debounce start time */
 
+volatile bool ButtonTestDone;
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Existing variables (defined in other files -- should all contain the "extern" keyword) */
 extern volatile u32 G_u32SystemTime1ms;        /* From board-specific source file */
@@ -64,6 +66,7 @@ static u32 Button_au32HoldTimeStart[TOTAL_BUTTONS];         /* System 1ms time w
 static bool Button_abNewPress[TOTAL_BUTTONS];               /* Flags to indicate a button was pressed */    
 static u8 Button_u8ActiveCol;                               /* Current Active Button Column */                                                                                    
 
+static u8 ButtonTestIndex;
 
 /***********************************************************************************************************************
 Function Definitions
@@ -225,7 +228,55 @@ void ButtonInitialize(void)
   /* Init complete: set function pointer and application flag */
   Button_pfnStateMachine = ButtonSM_Idle;
   
+  /* for testing buttons */
+  ButtonTestIndex= 0;
+  ButtonTestDone= false;
+  
  } /* end ButtonInitialize() */
+
+
+/*
+Function: ButtonTesting(void)
+
+Description:
+tests the function of buttons
+
+Requires:
+  -
+
+Promises:
+  - 
+*/
+void ButtonTesting(void)
+{
+  
+  LedNumberType LedButtonTest[] = {FRONT_LED, RIGHT_LED, BACK_LED, LEFT_LED};
+  u8 ButtonTestSequence[] = {BUTTON_F, BUTTON_R, BUTTON_B, BUTTON_L};
+  
+  
+  if(WasButtonPressed(ButtonTestSequence[ButtonTestIndex]))
+  {
+    
+    ButtonAcknowledge(ButtonTestSequence[ButtonTestIndex]);
+    LedOff(LedButtonTest[ButtonTestIndex]);
+    ButtonTestIndex++;
+    LedOff(LedButtonTest[ButtonTestIndex]);
+    
+  }
+  else
+  {
+    LedOn(LedButtonTest[ButtonTestIndex]);
+  }
+  
+  
+  if(ButtonTestIndex == 4)
+  {
+    ButtonTestDone = true;
+  }
+  
+} /* end ButtonTesting(void) */
+
+
 
 
 /*----------------------------------------------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        05/Jun/2018  13:37:29
+# IAR ANSI C/C++ Compiler V7.20.1.7305/W32 for ARM        06/Jun/2018  11:07:25
 # Copyright 1999-2014 IAR Systems AB.
 #
 #    Cpu mode     =  thumb
@@ -527,156 +527,187 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
     245          void LedInitialize(void)
     246          {
    \                     LedInitialize: (+1)
-   \   00000000   0xB51F             PUSH     {R0-R4,LR}
+   \   00000000   0xB530             PUSH     {R4,R5,LR}
+   \   00000002   0xB085             SUB      SP,SP,#+20
     247            LedNumberType aeLedSequenceHome[] = {HOME1, HOME2, HOME3, HOME6, HOME9, HOME8, HOME7, HOME4};
-   \   00000002   0xA802             ADD      R0,SP,#+8
-   \   00000004   0x....             LDR      R1,??DataTable6_6
-   \   00000006   0xC90C             LDM      R1!,{R2,R3}
-   \   00000008   0xC00C             STM      R0!,{R2,R3}
-   \   0000000A   0x3908             SUBS     R1,R1,#+8
-   \   0000000C   0x3808             SUBS     R0,R0,#+8
+                                 ^
+Warning[Pe177]: variable "aeLedSequenceHome" was declared but never referenced
+   \   00000004   0xA803             ADD      R0,SP,#+12
+   \   00000006   0x....             LDR      R1,??DataTable6_6
+   \   00000008   0xC90C             LDM      R1!,{R2,R3}
+   \   0000000A   0xC00C             STM      R0!,{R2,R3}
+   \   0000000C   0x3908             SUBS     R1,R1,#+8
+   \   0000000E   0x3808             SUBS     R0,R0,#+8
     248            LedNumberType aeLedSequenceAway[] = {AWAY1, AWAY4, AWAY7, AWAY8, AWAY9, AWAY6, AWAY3, AWAY2};
-   \   0000000E   0x4668             MOV      R0,SP
-   \   00000010   0x....             LDR      R1,??DataTable6_7
-   \   00000012   0xC90C             LDM      R1!,{R2,R3}
-   \   00000014   0xC00C             STM      R0!,{R2,R3}
-   \   00000016   0x3908             SUBS     R1,R1,#+8
-   \   00000018   0x3808             SUBS     R0,R0,#+8
+                                 ^
+Warning[Pe177]: variable "aeLedSequenceAway" was declared but never referenced
+   \   00000010   0xA801             ADD      R0,SP,#+4
+   \   00000012   0x....             LDR      R1,??DataTable6_7
+   \   00000014   0xC90C             LDM      R1!,{R2,R3}
+   \   00000016   0xC00C             STM      R0!,{R2,R3}
+   \   00000018   0x3908             SUBS     R1,R1,#+8
+   \   0000001A   0x3808             SUBS     R0,R0,#+8
     249            
     250            /* All status lights on */
-    251            //LedOn(STATUS_RED);
-    252            //LedOn(STATUS_YLW);
-    253            //LedOn(STATUS_GRN);
+    251            LedOn(STATUS_RED);
+   \   0000001C   0x2012             MOVS     R0,#+18
+   \   0000001E   0x.... 0x....      BL       LedOn
+    252            LedOn(STATUS_YLW);
+   \   00000022   0x2013             MOVS     R0,#+19
+   \   00000024   0x.... 0x....      BL       LedOn
+    253            LedOn(STATUS_GRN);
+   \   00000028   0x2014             MOVS     R0,#+20
+   \   0000002A   0x.... 0x....      BL       LedOn
     254          
-    255          #if 0 /* Picture mode */
-    256            LedOn(HOME1);
-    257            LedOn(HOME5);
-    258            LedOn(HOME7);
-    259            LedOn(HOME2);
-    260            LedOn(AWAY9);
-    261            LedOn(AWAY4);
-    262            LedOn(AWAY6);
-    263            LedOn(AWAY8);
-    264          
-    265            while(1);
-    266          #endif
-    267          
-    268            LedOff(HOME5);
-   \   0000001A   0x2004             MOVS     R0,#+4
-   \   0000001C   0x.... 0x....      BL       LedOff
-    269            LedOn(AWAY5);
-   \   00000020   0x200D             MOVS     R0,#+13
-   \   00000022   0x.... 0x....      BL       LedOn
-    270            
-    271            
-    272            /* Sequentially light up the LEDs (blocking is allowed during init)*/
-    273            for(u8 i = 0; i < 8; i++)
-   \   00000026   0x2400             MOVS     R4,#+0
+    255            /* For RC Car startup */
+    256            
+    257            LedNumberType aeLedSequenceDirections[] = {FRONT_LED, RIGHT_LED, BACK_LED, LEFT_LED};
+   \   0000002E   0x4668             MOV      R0,SP
+   \   00000030   0x....             LDR      R1,??DataTable6_8
+   \   00000032   0x680A             LDR      R2,[R1, #0]
+   \   00000034   0x6002             STR      R2,[R0, #0]
+    258            
+    259            
+    260            for(u8 n=0; n<10; n++){
+   \   00000036   0x2400             MOVS     R4,#+0
    \                     ??LedInitialize_0: (+1)
-   \   00000028   0xB2E4             UXTB     R4,R4
-   \   0000002A   0x2C08             CMP      R4,#+8
-   \   0000002C   0xDA21             BGE      ??LedInitialize_1
-    274            {
-    275              LedToggle(HOME5);
-   \   0000002E   0x2004             MOVS     R0,#+4
-   \   00000030   0x.... 0x....      BL       LedToggle
-    276              LedToggle(AWAY5);
-   \   00000034   0x200D             MOVS     R0,#+13
-   \   00000036   0x.... 0x....      BL       LedToggle
-    277              LedOn(aeLedSequenceHome[i]);
-   \   0000003A   0xA802             ADD      R0,SP,#+8
-   \   0000003C   0xB2E4             UXTB     R4,R4
-   \   0000003E   0x5D00             LDRB     R0,[R0, R4]
-   \   00000040   0x.... 0x....      BL       LedOn
-    278              LedOn(aeLedSequenceAway[i]);
-   \   00000044   0x4668             MOV      R0,SP
-   \   00000046   0xB2E4             UXTB     R4,R4
-   \   00000048   0x5D00             LDRB     R0,[R0, R4]
-   \   0000004A   0x.... 0x....      BL       LedOn
-    279              
-    280              for(u32 j = 0; j < 200000; j++);
-   \   0000004E   0x2000             MOVS     R0,#+0
+   \   00000038   0xB2E4             UXTB     R4,R4
+   \   0000003A   0x2C0A             CMP      R4,#+10
+   \   0000003C   0xDA17             BGE      ??LedInitialize_1
+    261              for(u8 i=0; i<4; i++){
+   \   0000003E   0x2500             MOVS     R5,#+0
    \                     ??LedInitialize_2: (+1)
-   \   00000050   0x....             LDR      R1,??DataTable6_8  ;; 0x30d40
-   \   00000052   0x4288             CMP      R0,R1
-   \   00000054   0xD201             BCS      ??LedInitialize_3
-   \   00000056   0x1C40             ADDS     R0,R0,#+1
-   \   00000058   0xE7FA             B        ??LedInitialize_2
-    281              
-    282              LedOff(aeLedSequenceHome[i]);
-   \                     ??LedInitialize_3: (+1)
-   \   0000005A   0xA802             ADD      R0,SP,#+8
-   \   0000005C   0xB2E4             UXTB     R4,R4
-   \   0000005E   0x5D00             LDRB     R0,[R0, R4]
-   \   00000060   0x.... 0x....      BL       LedOff
-    283              LedOff(aeLedSequenceAway[i]);
-   \   00000064   0x4668             MOV      R0,SP
-   \   00000066   0xB2E4             UXTB     R4,R4
-   \   00000068   0x5D00             LDRB     R0,[R0, R4]
-   \   0000006A   0x.... 0x....      BL       LedOff
-    284            }
-   \   0000006E   0x1C64             ADDS     R4,R4,#+1
-   \   00000070   0xE7DA             B        ??LedInitialize_0
-    285          
-    286          #if 0
-    287            /* Sequentially light up the LEDs */
-    288            for(u8 i = 0; i < 18; i++)
-    289            {
-    290              LedOn(aeLedSequence[i]);
-    291              for(u32 j = 0; j < 300000; j++);
-    292            }
-    293          #endif
-    294          
-    295            /* Pause for show */
-    296            for(u32 i = 0; i < 2000000; i++);
-   \                     ??LedInitialize_1: (+1)
-   \   00000072   0x2000             MOVS     R0,#+0
+   \   00000040   0xB2ED             UXTB     R5,R5
+   \   00000042   0x2D04             CMP      R5,#+4
+   \   00000044   0xDA11             BGE      ??LedInitialize_3
+    262              
+    263                LedOn(aeLedSequenceDirections[i]);
+   \   00000046   0x4668             MOV      R0,SP
+   \   00000048   0xB2ED             UXTB     R5,R5
+   \   0000004A   0x5D40             LDRB     R0,[R0, R5]
+   \   0000004C   0x.... 0x....      BL       LedOn
+    264               
+    265                for(u32 j = 0; j < 200000; j++);
+   \   00000050   0x2000             MOVS     R0,#+0
    \                     ??LedInitialize_4: (+1)
-   \   00000074   0x....             LDR      R1,??DataTable6_9  ;; 0x1e8480
-   \   00000076   0x4288             CMP      R0,R1
-   \   00000078   0xD201             BCS      ??LedInitialize_5
-   \   0000007A   0x1C40             ADDS     R0,R0,#+1
-   \   0000007C   0xE7FA             B        ??LedInitialize_4
-    297          
-    298            
-    299          } /* end LedInitialize() */
+   \   00000052   0x....             LDR      R1,??DataTable6_9  ;; 0x30d40
+   \   00000054   0x4288             CMP      R0,R1
+   \   00000056   0xD201             BCS      ??LedInitialize_5
+   \   00000058   0x1C40             ADDS     R0,R0,#+1
+   \   0000005A   0xE7FA             B        ??LedInitialize_4
+    266              
+    267                LedOff(aeLedSequenceDirections[i]);
    \                     ??LedInitialize_5: (+1)
-   \   0000007E   0xBD1F             POP      {R0-R4,PC}       ;; return
-    300          
-    301          
-    302          /*--------------------------------------------------------------------------------------------------------------------*/
-    303          /* Private functions */
-    304          /*--------------------------------------------------------------------------------------------------------------------*/
+   \   0000005C   0x4668             MOV      R0,SP
+   \   0000005E   0xB2ED             UXTB     R5,R5
+   \   00000060   0x5D40             LDRB     R0,[R0, R5]
+   \   00000062   0x.... 0x....      BL       LedOff
+    268              }
+   \   00000066   0x1C6D             ADDS     R5,R5,#+1
+   \   00000068   0xE7EA             B        ??LedInitialize_2
+    269            }
+   \                     ??LedInitialize_3: (+1)
+   \   0000006A   0x1C64             ADDS     R4,R4,#+1
+   \   0000006C   0xE7E4             B        ??LedInitialize_0
+    270            
+    271          #if 0  
+    272           /* Picture mode */
+    273            LedOn(HOME1);
+    274            LedOn(HOME5);
+    275            LedOn(HOME7);
+    276            LedOn(HOME2);
+    277            LedOn(AWAY9);
+    278            LedOn(AWAY4);
+    279            LedOn(AWAY6);
+    280            LedOn(AWAY8);
+    281          
+    282            while(1);
+    283          
+    284          #endif
+    285            LedOff(HOME5);
+   \                     ??LedInitialize_1: (+1)
+   \   0000006E   0x2004             MOVS     R0,#+4
+   \   00000070   0x.... 0x....      BL       LedOff
+    286            LedOn(AWAY5);
+   \   00000074   0x200D             MOVS     R0,#+13
+   \   00000076   0x.... 0x....      BL       LedOn
+    287          
+    288            
+    289          #if 0
+    290            /* Sequentially light up the LEDs (blocking is allowed during init)*/
+    291            for(u8 i = 0; i < 4; i++)
+    292            {
+    293              LedToggle(HOME5);
+    294              LedToggle(AWAY5);
+    295              LedOn(aeLedSequenceDirections[i]);
+    296              //LedOn(aeLedSequenceHome[i]);
+    297              LedOn(aeLedSequenceAway[i]);
+    298              
+    299              for(u32 j = 0; j < 200000; j++);
+    300              
+    301              LedOff(aeLedSequenceDirections[i]);
+    302              //LedOff(aeLedSequenceHome[i]);
+    303              LedOff(aeLedSequenceAway[i]);
+    304            }
     305          
-    306          /*!----------------------------------------------------------------------------------------------------------------------
-    307          @fn void LedUpdate(void)
-    308          
-    309          @brief Update all LEDs for the current cycle.
-    310          
-    311          Requires:
-    312          - G_u32SystemTime1ms is counting
-    313          
-    314          Promises:
-    315          - All LEDs updated based on their counters
-    316          
-    317          */
+    306          
+    307            /* Sequentially light up the LEDs */
+    308            for(u8 i = 0; i < 18; i++)
+    309            {
+    310              LedOn(aeLedSequence[i]);
+    311              for(u32 j = 0; j < 300000; j++);
+    312            }
+    313          #endif
+    314          
+    315            /* Pause for show */
+    316            for(u32 i = 0; i < 2000000; i++);
+   \   0000007A   0x2000             MOVS     R0,#+0
+   \                     ??LedInitialize_6: (+1)
+   \   0000007C   0x....             LDR      R1,??DataTable6_10  ;; 0x1e8480
+   \   0000007E   0x4288             CMP      R0,R1
+   \   00000080   0xD201             BCS      ??LedInitialize_7
+   \   00000082   0x1C40             ADDS     R0,R0,#+1
+   \   00000084   0xE7FA             B        ??LedInitialize_6
+    317            
+    318          } /* end LedInitialize() */
+   \                     ??LedInitialize_7: (+1)
+   \   00000086   0xB005             ADD      SP,SP,#+20
+   \   00000088   0xBD30             POP      {R4,R5,PC}       ;; return
+    319          
+    320          
+    321          /*--------------------------------------------------------------------------------------------------------------------*/
+    322          /* Private functions */
+    323          /*--------------------------------------------------------------------------------------------------------------------*/
+    324          
+    325          /*!----------------------------------------------------------------------------------------------------------------------
+    326          @fn void LedUpdate(void)
+    327          
+    328          @brief Update all LEDs for the current cycle.
+    329          
+    330          Requires:
+    331          - G_u32SystemTime1ms is counting
+    332          
+    333          Promises:
+    334          - All LEDs updated based on their counters
+    335          
+    336          */
 
    \                                 In section .text, align 2, keep-with-next
-    318          void LedUpdate(void)
-    319          {
+    337          void LedUpdate(void)
+    338          {
    \                     LedUpdate: (+1)
    \   00000000   0xB510             PUSH     {R4,LR}
-    320          	/* Loop through each LED */
-    321            for(u8 i = 0; i < TOTAL_LEDS; i++)
+    339          	/* Loop through each LED */
+    340            for(u8 i = 0; i < TOTAL_LEDS; i++)
    \   00000002   0x2400             MOVS     R4,#+0
    \                     ??LedUpdate_0: (+1)
    \   00000004   0xB2E4             UXTB     R4,R4
    \   00000006   0x2C15             CMP      R4,#+21
    \   00000008   0xDB00             BLT      .+4
    \   0000000A   0xE0A6             B        ??LedUpdate_1
-    322            {
-    323              /* Check if LED is PWMing */
-    324              if(Leds_asLedArray[(LedNumberType)i].eMode == LED_PWM_MODE)
+    341            {
+    342              /* Check if LED is PWMing */
+    343              if(Leds_asLedArray[(LedNumberType)i].eMode == LED_PWM_MODE)
    \   0000000C   0x....             LDR      R0,??DataTable6
    \   0000000E   0xB2E4             UXTB     R4,R4
    \   00000010   0x2108             MOVS     R1,#+8
@@ -684,9 +715,9 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   00000014   0x5C40             LDRB     R0,[R0, R1]
    \   00000016   0x2801             CMP      R0,#+1
    \   00000018   0xD171             BNE      ??LedUpdate_2
-    325              {
-    326                /* Handle special case of 0% duty cycle */
-    327                if( Leds_asLedArray[i].eRate == LED_PWM_0 )
+    344              {
+    345                /* Handle special case of 0% duty cycle */
+    346                if( Leds_asLedArray[i].eRate == LED_PWM_0 )
    \   0000001A   0x....             LDR      R0,??DataTable6
    \   0000001C   0xB2E4             UXTB     R4,R4
    \   0000001E   0x2108             MOVS     R1,#+8
@@ -696,16 +727,16 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   00000026   0x5E40             LDRSH    R0,[R0, R1]
    \   00000028   0x2800             CMP      R0,#+0
    \   0000002A   0xD104             BNE      ??LedUpdate_3
-    328                {
-    329                  LedOff( (LedNumberType)i );
+    347                {
+    348                  LedOff( (LedNumberType)i );
    \   0000002C   0x0020             MOVS     R0,R4
    \   0000002E   0xB2C0             UXTB     R0,R0
    \   00000030   0x.... 0x....      BL       LedOff
    \   00000034   0xE05C             B        ??LedUpdate_4
-    330                }
-    331                
-    332                /* Handle special case of 100% duty cycle */
-    333                else if( Leds_asLedArray[i].eRate == LED_PWM_100 )
+    349                }
+    350                
+    351                /* Handle special case of 100% duty cycle */
+    352                else if( Leds_asLedArray[i].eRate == LED_PWM_100 )
    \                     ??LedUpdate_3: (+1)
    \   00000036   0x....             LDR      R0,??DataTable6
    \   00000038   0xB2E4             UXTB     R4,R4
@@ -716,18 +747,18 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   00000042   0x5E40             LDRSH    R0,[R0, R1]
    \   00000044   0x2814             CMP      R0,#+20
    \   00000046   0xD104             BNE      ??LedUpdate_5
-    334                {
-    335                  LedOn( (LedNumberType)i );
+    353                {
+    354                  LedOn( (LedNumberType)i );
    \   00000048   0x0020             MOVS     R0,R4
    \   0000004A   0xB2C0             UXTB     R0,R0
    \   0000004C   0x.... 0x....      BL       LedOn
    \   00000050   0xE04E             B        ??LedUpdate_4
-    336                }
-    337            
-    338                /* Otherwise, regular PWM: decrement counter; toggle and reload if counter reaches 0 */
-    339                else
-    340                {
-    341                  if(--Leds_asLedArray[(LedNumberType)i].u16Count == 0)
+    355                }
+    356            
+    357                /* Otherwise, regular PWM: decrement counter; toggle and reload if counter reaches 0 */
+    358                else
+    359                {
+    360                  if(--Leds_asLedArray[(LedNumberType)i].u16Count == 0)
    \                     ??LedUpdate_5: (+1)
    \   00000052   0x....             LDR      R0,??DataTable6
    \   00000054   0xB2E4             UXTB     R4,R4
@@ -750,8 +781,8 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   00000076   0x8880             LDRH     R0,[R0, #+4]
    \   00000078   0x2800             CMP      R0,#+0
    \   0000007A   0xD139             BNE      ??LedUpdate_4
-    342                  {
-    343                    if(Leds_asLedArray[(LedNumberType)i].eCurrentDuty == LED_PWM_DUTY_HIGH)
+    361                  {
+    362                    if(Leds_asLedArray[(LedNumberType)i].eCurrentDuty == LED_PWM_DUTY_HIGH)
    \   0000007C   0x....             LDR      R0,??DataTable6
    \   0000007E   0xB2E4             UXTB     R4,R4
    \   00000080   0x2108             MOVS     R1,#+8
@@ -760,13 +791,13 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   00000086   0x7980             LDRB     R0,[R0, #+6]
    \   00000088   0x2801             CMP      R0,#+1
    \   0000008A   0xD11A             BNE      ??LedUpdate_6
-    344                    {
-    345                      /* Turn the LED off and update the counters for the next cycle */
-    346                      LedOff( (LedNumberType)i );
+    363                    {
+    364                      /* Turn the LED off and update the counters for the next cycle */
+    365                      LedOff( (LedNumberType)i );
    \   0000008C   0x0020             MOVS     R0,R4
    \   0000008E   0xB2C0             UXTB     R0,R0
    \   00000090   0x.... 0x....      BL       LedOff
-    347                      Leds_asLedArray[(LedNumberType)i].u16Count = LED_PWM_PERIOD - Leds_asLedArray[(LedNumberType)i].eRate;
+    366                      Leds_asLedArray[(LedNumberType)i].u16Count = LED_PWM_PERIOD - Leds_asLedArray[(LedNumberType)i].eRate;
    \   00000094   0x2014             MOVS     R0,#+20
    \   00000096   0x....             LDR      R1,??DataTable6
    \   00000098   0xB2E4             UXTB     R4,R4
@@ -782,7 +813,7 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   000000AC   0x4362             MULS     R2,R4,R2
    \   000000AE   0x1889             ADDS     R1,R1,R2
    \   000000B0   0x8088             STRH     R0,[R1, #+4]
-    348                      Leds_asLedArray[(LedNumberType)i].eCurrentDuty = LED_PWM_DUTY_LOW;
+    367                      Leds_asLedArray[(LedNumberType)i].eCurrentDuty = LED_PWM_DUTY_LOW;
    \   000000B2   0x2000             MOVS     R0,#+0
    \   000000B4   0x....             LDR      R1,??DataTable6
    \   000000B6   0xB2E4             UXTB     R4,R4
@@ -791,16 +822,16 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   000000BC   0x1889             ADDS     R1,R1,R2
    \   000000BE   0x7188             STRB     R0,[R1, #+6]
    \   000000C0   0xE016             B        ??LedUpdate_4
-    349                    }
-    350                    else
-    351                    {
-    352                      /* Turn the LED on and update the counters for the next cycle */
-    353                      LedOn( (LedNumberType)i );
+    368                    }
+    369                    else
+    370                    {
+    371                      /* Turn the LED on and update the counters for the next cycle */
+    372                      LedOn( (LedNumberType)i );
    \                     ??LedUpdate_6: (+1)
    \   000000C2   0x0020             MOVS     R0,R4
    \   000000C4   0xB2C0             UXTB     R0,R0
    \   000000C6   0x.... 0x....      BL       LedOn
-    354                      Leds_asLedArray[i].u16Count = Leds_asLedArray[i].eRate;
+    373                      Leds_asLedArray[i].u16Count = Leds_asLedArray[i].eRate;
    \   000000CA   0x....             LDR      R0,??DataTable6
    \   000000CC   0xB2E4             UXTB     R4,R4
    \   000000CE   0x2108             MOVS     R1,#+8
@@ -813,7 +844,7 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   000000DC   0x4362             MULS     R2,R4,R2
    \   000000DE   0x1889             ADDS     R1,R1,R2
    \   000000E0   0x8088             STRH     R0,[R1, #+4]
-    355                      Leds_asLedArray[i].eCurrentDuty = LED_PWM_DUTY_HIGH;
+    374                      Leds_asLedArray[i].eCurrentDuty = LED_PWM_DUTY_HIGH;
    \   000000E2   0x2001             MOVS     R0,#+1
    \   000000E4   0x....             LDR      R1,??DataTable6
    \   000000E6   0xB2E4             UXTB     R4,R4
@@ -821,12 +852,12 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   000000EA   0x4362             MULS     R2,R4,R2
    \   000000EC   0x1889             ADDS     R1,R1,R2
    \   000000EE   0x7188             STRB     R0,[R1, #+6]
-    356                    }
-    357                  }
-    358                }
-    359          
-    360                /* Set the LED back to PWM mode since LedOff and LedOn set it to normal mode */
-    361               	Leds_asLedArray[(LedNumberType)i].eMode = LED_PWM_MODE;
+    375                    }
+    376                  }
+    377                }
+    378          
+    379                /* Set the LED back to PWM mode since LedOff and LedOn set it to normal mode */
+    380               	Leds_asLedArray[(LedNumberType)i].eMode = LED_PWM_MODE;
    \                     ??LedUpdate_4: (+1)
    \   000000F0   0x2001             MOVS     R0,#+1
    \   000000F2   0x....             LDR      R1,??DataTable6
@@ -835,11 +866,11 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   000000F8   0x4362             MULS     R2,R4,R2
    \   000000FA   0x5488             STRB     R0,[R1, R2]
    \   000000FC   0xE02B             B        ??LedUpdate_7
-    362                
-    363              } /* end if PWM mode */
-    364              
-    365              /* LED is in LED_BLINK_MODE mode */
-    366              else if(Leds_asLedArray[(LedNumberType)i].eMode == LED_BLINK_MODE)
+    381                
+    382              } /* end if PWM mode */
+    383              
+    384              /* LED is in LED_BLINK_MODE mode */
+    385              else if(Leds_asLedArray[(LedNumberType)i].eMode == LED_BLINK_MODE)
    \                     ??LedUpdate_2: (+1)
    \   000000FE   0x....             LDR      R0,??DataTable6
    \   00000100   0xB2E4             UXTB     R4,R4
@@ -848,9 +879,9 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   00000106   0x5C40             LDRB     R0,[R0, R1]
    \   00000108   0x2802             CMP      R0,#+2
    \   0000010A   0xD124             BNE      ??LedUpdate_7
-    367              {
-    368                /* Decrement counter; toggle and reload if counter reaches 0 */
-    369                if( --Leds_asLedArray[(LedNumberType)i].u16Count == 0)
+    386              {
+    387                /* Decrement counter; toggle and reload if counter reaches 0 */
+    388                if( --Leds_asLedArray[(LedNumberType)i].u16Count == 0)
    \   0000010C   0x....             LDR      R0,??DataTable6
    \   0000010E   0xB2E4             UXTB     R4,R4
    \   00000110   0x2108             MOVS     R1,#+8
@@ -872,12 +903,12 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   00000130   0x8880             LDRH     R0,[R0, #+4]
    \   00000132   0x2800             CMP      R0,#+0
    \   00000134   0xD10F             BNE      ??LedUpdate_7
-    370                {
-    371                  LedToggle( (LedNumberType)i );
+    389                {
+    390                  LedToggle( (LedNumberType)i );
    \   00000136   0x0020             MOVS     R0,R4
    \   00000138   0xB2C0             UXTB     R0,R0
    \   0000013A   0x.... 0x....      BL       LedToggle
-    372                  Leds_asLedArray[(LedNumberType)i].u16Count = Leds_asLedArray[(LedNumberType)i].eRate;
+    391                  Leds_asLedArray[(LedNumberType)i].u16Count = Leds_asLedArray[(LedNumberType)i].eRate;
    \   0000013E   0x....             LDR      R0,??DataTable6
    \   00000140   0xB2E4             UXTB     R4,R4
    \   00000142   0x2108             MOVS     R1,#+8
@@ -890,14 +921,14 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \   00000150   0x4362             MULS     R2,R4,R2
    \   00000152   0x1889             ADDS     R1,R1,R2
    \   00000154   0x8088             STRH     R0,[R1, #+4]
-    373                }
-    374              }
-    375            } /* end for */
+    392                }
+    393              }
+    394            } /* end for */
    \                     ??LedUpdate_7: (+1)
    \   00000156   0x1C64             ADDS     R4,R4,#+1
    \   00000158   0xE754             B        ??LedUpdate_0
-    376            
-    377          } /* end LedUpdate() */
+    395            
+    396          } /* end LedUpdate() */
    \                     ??LedUpdate_1: (+1)
    \   0000015A   0xBD10             POP      {R4,PC}          ;; return
 
@@ -935,10 +966,14 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable6_8:
-   \   00000000   0x00030D40         DC32     0x30d40
+   \   00000000   0x........         DC32     ?_2
 
    \                                 In section .text, align 4, keep-with-next
    \                     ??DataTable6_9:
+   \   00000000   0x00030D40         DC32     0x30d40
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable6_10:
    \   00000000   0x001E8480         DC32     0x1e8480
 
    \                                 In section .rodata, align 4
@@ -954,25 +989,29 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    \              0x0F 0x10    
    \              0x11 0x0E    
    \              0x0B 0x0A    
-    378          
-    379          
-    380          
-    381          
-    382          /*--------------------------------------------------------------------------------------------------------------------*/
-    383          /* End of File */
-    384          /*--------------------------------------------------------------------------------------------------------------------*/
-    385          
-    386          
+
+   \                                 In section .rodata, align 4
+   \                     ?_2:
+   \   00000000   0x0A 0x0E          DC8 10, 14, 16, 12
+   \              0x10 0x0C    
+    397          
+    398          
+    399          
+    400          
+    401          /*--------------------------------------------------------------------------------------------------------------------*/
+    402          /* End of File */
+    403          /*--------------------------------------------------------------------------------------------------------------------*/
+    404          
+    405          
 
    Maximum stack usage in bytes:
 
    .cstack Function
    ------- --------
        4   LedBlink
-      24   LedInitialize
-        24   -> LedOff
-        24   -> LedOn
-        24   -> LedToggle
+      32   LedInitialize
+        32   -> LedOff
+        32   -> LedOn
        4   LedOff
        4   LedOn
        4   LedPWM
@@ -989,6 +1028,7 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
    -----  --------------
        4  ??DataTable6
        4  ??DataTable6_1
+       4  ??DataTable6_10
        4  ??DataTable6_2
        4  ??DataTable6_3
        4  ??DataTable6_4
@@ -999,8 +1039,9 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
        4  ??DataTable6_9
        8  ?_0
        8  ?_1
+       4  ?_2
       42  LedBlink
-     128  LedInitialize
+     138  LedInitialize
       62  LedOff
       62  LedOn
       56  LedPWM
@@ -1011,12 +1052,12 @@ C:\Users\ENGENUICS5\Documents\GitHub\SummerCamp2018_RC_Car\bsp\leds_anttt.c
 
  
  252 bytes in section .data
-  16 bytes in section .rodata
- 764 bytes in section .text
+  20 bytes in section .rodata
+ 778 bytes in section .text
  
- 764 bytes of CODE  memory
-  16 bytes of CONST memory
+ 778 bytes of CODE  memory
+  20 bytes of CONST memory
  252 bytes of DATA  memory
 
 Errors: none
-Warnings: none
+Warnings: 2
