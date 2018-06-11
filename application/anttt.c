@@ -18,6 +18,8 @@ All Global variable names shall start with "G_xxAnttt"
 u32 G_u32AntttFlags;                                     /* Global state flags */
 fnCode_type ANTTT_SM;
 
+fnCode_type SCRCC_SM;
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Existing variables (defined in other files -- should all contain the "extern" keyword) */
 extern volatile u32 G_u32SystemFlags;                  /* From main.c */
@@ -33,9 +35,14 @@ Variable names shall start with "Anttt_<type>" and be declared as static.
 //static u32 Anttt_u32Timeout;                             /* Timeout counter used across states */
 //static u32 Anttt_u32CyclePeriod;                         /* Current base time for Anttt modulation */
 static u8 Anttt_u8RxData[ANTTT_COMMAND_SIZE];
+
+static u8 Scrcc_u8RxData[SCRCC_COMMAND_SIZE];
+
 static u16 Anttt_u16HomeState;
 static u16 Anttt_u16AwayState;
 static bool Anttt_bPendingResponse;
+
+
 
 u16 au16WinningCombos[] = 
 {
@@ -68,6 +75,18 @@ void AntttIncomingMessage(u8* pu8Data_, u8 u8Length_)
   
   memcpy(Anttt_u8RxData, pu8Data_, u8Length_);
 }
+
+void ScrccIncomingMessage(u8* pu8Data_, u8 u8Length_)
+{
+  // Check length of the Command Size.
+  if (u8Length_ != SCRCC_COMMAND_SIZE)
+  {
+    return;
+  }
+  
+  memcpy(Scrcc_u8RxData, pu8Data_, u8Length_);
+}
+
 
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -107,6 +126,29 @@ void AntttInitialize(void)
 } /* end AntttInitialize() */
 
 
+void ScrccInitialize(void)
+{
+  Scrcc_reset_rx_buffer();
+  
+  SCRCC_SM = &ScrccSM_Idle;
+  Anttt_bPendingResponse = false;
+  
+  // Set up initial LEDs.
+  LedOn(STATUS_RED);
+  LedOff(STATUS_YLW);
+  LedOff(STATUS_GRN);
+  
+  for (u8 u8Led = 0; u8Led < (TOTAL_BUTTONS * 2); u8Led++)
+  {
+    LedOff((LedNumberType) u8Led);
+  }
+  
+  nrf_gpio_pin_clear(16);
+  
+} /* end AntttInitialize() */
+
+
+
 /*--------------------------------------------------------------------------------------------------------------------
 Function: AntttHandleIncomingMessage(u8* pu8Data_, u8 u8Length_)
 
@@ -130,6 +172,14 @@ void AntttHandleIncomingMessage(u8* pu8Data_, u8 u8Length_)
   }
 }
 
+void ScrccHandleIncomingMessage(u8* pu8Data_, u8 u8Length_)
+{
+  // Check the appropriate length.
+  if (u8Length_ == SCRCC_COMMAND_SIZE)
+  {
+    memcpy(Scrcc_u8RxData, pu8Data_, u8Length_);
+  }
+}
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Private functions                                                                                                  */
@@ -202,6 +252,16 @@ static void Anttt_reset_rx_buffer(void)
 }
 
 
+static void Scrcc_reset_rx_buffer(void)
+{
+  u8 u8Status;
+  
+  SystemEnterCriticalSection(&u8Status);
+  memset(Scrcc_u8RxData, 0xFF, SCRCC_COMMAND_SIZE);   
+  SystemExitCriticalSection(u8Status);
+}
+
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* State Machine definitions                                                                                          */
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -237,6 +297,21 @@ static void AntttSM_Idle(void)
 #endif
   
 } 
+
+
+static void ScrccSM_Idle(void)
+{
+  // Check if module is connected to client.
+  if (G_u32BPEngenuicsFlags == _BPENGENUICS_CONNECTED)
+  {
+    // Set LEDs and proceed to wait state.
+    LedOn(STATUS_GRN);   // Connected to Client.
+    
+    SCRCC_SM = &ScrccSM_Wait;
+  }
+}
+
+
 
 /*--------------------------------------------------------------------------------------------------------------------
 State: AntttSM_Wait
@@ -317,6 +392,26 @@ static void AntttSM_Wait(void)
     }
   }
 }
+
+
+
+static void ScrccSM_Wait(void)
+{
+  u8 au8Temp[SCRCC_COMMAND_SIZE] = {0, 0, 0, 0, 0xA5, 0, 0, 0};
+  u8 u8Position;
+  
+  // Check if module has established connection with client.
+  if (G_u32BPEngenuicsFlags & _BPENGENUICS_CONNECTED)
+  {
+    
+  }
+  else
+  {
+    // Disconnected from client.
+    ScrccInitialize();
+  }
+}
+
 
 /*--------------------------------------------------------------------------------------------------------------------
 State: AntttSM_Active

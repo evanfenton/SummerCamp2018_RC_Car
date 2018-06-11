@@ -27,7 +27,7 @@ Constants / Definitions
 #define ANTTT_COMMAND_ID_MOVE_ACK       (u8)0xAC   
 #define ANTTT_COMMAND_ID_MOVE_NACK      (u8)0xBC   
 
-
+#define SCRCC_COMMAND_SIZE              (u8)8
 
 /**********************************************************************************************************************
 Type Definitions
@@ -45,6 +45,7 @@ Function Declarations
 /*--------------------------------------------------------------------------------------------------------------------*/
 void AntttIncomingMessage(u8* pu8Data_, u8 u8Length_);
 
+void ScrccIncomingMessage(u8* pu8Data_, u8 u8Length_);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* Protected functions                                                                                                */
@@ -52,6 +53,7 @@ void AntttIncomingMessage(u8* pu8Data_, u8 u8Length_);
 void AntttInitialize(void);
 void AntttHandleIncomingMessage(u8* pu8Data_, u8 u8Length_);
 
+void ScrccHandleIncomingMessage(u8* pu8Data_, u8 u8Length_);
 
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -59,6 +61,7 @@ void AntttHandleIncomingMessage(u8* pu8Data_, u8 u8Length_);
 /*--------------------------------------------------------------------------------------------------------------------*/
 static bool AntttIsGameOver(void);
 static void Anttt_reset_rx_buffer(void);
+static void Scrcc_reset_rx_buffer(void);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* SM functions                                                                                                  */
@@ -67,6 +70,10 @@ static void AntttSM_Idle(void);
 static void AntttSM_Wait(void);
 static void AntttSM_Active(void);
 static void AntttSM_Gameover(void);
+
+static void ScrccSM_Idle(void);
+static void ScrccSM_Wait(void);
+static void ScrccSM_Active(void);
 
 
 
