@@ -248,49 +248,25 @@ void LedInitialize(void)
   LedNumberType aeLedSequenceAway[] = {AWAY1, AWAY4, AWAY7, AWAY8, AWAY9, AWAY6, AWAY3, AWAY2};
   
   /* All status lights on */
-  //LedOn(STATUS_RED);
-  //LedOn(STATUS_YLW);
-  //LedOn(STATUS_GRN);
+  LedOn(STATUS_RED);
+  LedOn(STATUS_YLW);
+  LedOn(STATUS_GRN);
 
-#if 0 /* Picture mode */
-  LedOn(HOME1);
-  LedOn(HOME5);
-  LedOn(HOME7);
-  LedOn(HOME2);
-  LedOn(AWAY9);
-  LedOn(AWAY4);
-  LedOn(AWAY6);
-  LedOn(AWAY8);
-
-  while(1);
-#endif
-
-  LedOff(HOME5);
-  LedOn(AWAY5);
+  /* For RC Car startup */
+  
+  LedNumberType aeLedSequenceDirections[] = {FRONT_LED, RIGHT_LED, BACK_LED, LEFT_LED};
   
   
-  /* Sequentially light up the LEDs (blocking is allowed during init)*/
-  for(u8 i = 0; i < 8; i++)
-  {
-    LedToggle(HOME5);
-    LedToggle(AWAY5);
-    LedOn(aeLedSequenceHome[i]);
-    LedOn(aeLedSequenceAway[i]);
+  for(u8 n=0; n<10; n++){
+    for(u8 i=0; i<4; i++){
     
-    for(u32 j = 0; j < 200000; j++);
+      LedOn(aeLedSequenceDirections[i]);
+     
+      for(u32 j = 0; j < 200000; j++);
     
-    LedOff(aeLedSequenceHome[i]);
-    LedOff(aeLedSequenceAway[i]);
+      LedOff(aeLedSequenceDirections[i]);
+    }
   }
-
-#if 0
-  /* Sequentially light up the LEDs */
-  for(u8 i = 0; i < 18; i++)
-  {
-    LedOn(aeLedSequence[i]);
-    for(u32 j = 0; j < 300000; j++);
-  }
-#endif
 
   /* Pause for show */
   for(u32 i = 0; i < 2000000; i++);
