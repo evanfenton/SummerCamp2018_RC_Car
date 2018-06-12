@@ -262,6 +262,118 @@ static void Scrcc_reset_rx_buffer(void)
 }
 
 
+
+/*
+Function: Scrcc_Forward()
+
+Description:
+sends appropriate signals to robot for forward movement
+
+Requires:
+  -
+
+Promises:
+  - 
+*/
+static void Scrcc_Forward(void)
+{
+   LedOn(FRONT_LED);            /* visual confirmation */
+   LedOff(RIGHT_LED);
+   LedOff(BACK_LED);
+   LedOff(LEFT_LED);
+    
+   LedPWM(EN_LEFT, LED_PWM_100);              /* turn both motors on */
+   LedPWM(EN_RIGHT, LED_PWM_100);
+    
+   LedOff(IN_TOP);              /* signals for forward rotation */
+   LedOn(IN_BOT);
+    
+} /* end Scrcc_Forward() */
+
+
+/*
+Function: Scrcc_Backward()
+
+Description:
+sends appropriate signals to robot for backward movement
+
+Requires:
+  -
+
+Promises:
+  - 
+*/
+static void Scrcc_Backward(void)
+{
+   LedOn(BACK_LED);             /* visual confirmation */
+   LedOff(FRONT_LED);
+   LedOff(RIGHT_LED);
+   LedOff(LEFT_LED);
+    
+   LedPWM(EN_LEFT, LED_PWM_100);              /* turn both motors on */
+   LedPWM(EN_RIGHT, LED_PWM_100);
+    
+   LedOn(IN_TOP);               /* signals for backward rotation */
+   LedOff(IN_BOT);
+    
+} /* end Scrcc_Backward() */
+
+
+/*
+Function: Scrcc_LeftTurn()
+
+Description:
+sends appropriate signals to robot for left turn
+
+Requires:
+  -
+
+Promises:
+  - 
+*/
+static void Scrcc_LeftTurn(void)
+{
+   LedOn(LEFT_LED);              /* visual confirmation */
+   LedOff(FRONT_LED);
+   LedOff(BACK_LED);
+   LedOff(RIGHT_LED);
+    
+   LedPWM(EN_LEFT, LED_PWM_0);              /* turn left motor off right motor on */
+   LedPWM(EN_RIGHT, LED_PWM_100);
+    
+   LedOff(IN_TOP);               /* signals for forward rotation */
+   LedOn(IN_BOT);
+    
+} /* end Scrcc_LeftTurn() */
+
+
+/*
+Function: Scrcc_RightTurn()
+
+Description:
+sends appropriate signals to robot for right turn
+
+Requires:
+  -
+
+Promises:
+  - 
+*/
+static void Scrcc_RightTurn(void)
+{
+   LedOn(RIGHT_LED);            /* visual confirmation */
+   LedOff(FRONT_LED);
+   LedOff(BACK_LED);
+   LedOff(LEFT_LED);
+    
+   LedPWM(EN_LEFT, LED_PWM_100);              /* turn right motor off left motor on */
+   LedPWM(EN_RIGHT, LED_PWM_0);
+    
+   LedOff(IN_TOP);              /* signals for forward rotation */
+   LedOn(IN_BOT);
+    
+} /* end Scrcc_RightTurn() */
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* State Machine definitions                                                                                          */
 /*--------------------------------------------------------------------------------------------------------------------*/

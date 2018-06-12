@@ -36,6 +36,17 @@ Constants / Definitions
 #define SCRCC_COMMAND_LEFT              (u8)0x02
 #define SCRCC_COMMAND_RIGHT             (u8)0x03
 
+#define FRONT_LED                       AWAY2
+#define BACK_LED                        AWAY4
+#define LEFT_LED                        AWAY6
+#define RIGHT_LED                       AWAY8
+
+#define EN_LEFT                         AWAY1
+#define EN_RIGHT                        HOME1
+
+#define IN_TOP                          AWAY3
+#define IN_BOT                          HOME3
+
 /**********************************************************************************************************************
 Type Definitions
 **********************************************************************************************************************/
@@ -71,6 +82,8 @@ static void Anttt_reset_rx_buffer(void);
 
 static void Scrcc_reset_rx_buffer(void);
 
+
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* SM functions                                                                                                  */
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -83,7 +96,10 @@ static void ScrccSM_Idle(void);
 static void ScrccSM_Wait(void);
 static void ScrccSM_Active(void);
 
-
+static void Scrcc_Forward(void);
+static void Scrcc_Backward(void);
+static void Scrcc_LeftTurn(void);
+static void Scrcc_RightTurn(void);
 
 #endif /* __ANTTT_H */
 
