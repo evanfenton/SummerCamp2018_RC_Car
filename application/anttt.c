@@ -257,7 +257,7 @@ static void Scrcc_reset_rx_buffer(void)
   u8 u8Status;
   
   SystemEnterCriticalSection(&u8Status);
-  memset(Scrcc_u8RxData, 0xFF, SCRCC_COMMAND_SIZE);   
+  memset(Scrcc_u8RxData, 0xAA, SCRCC_COMMAND_SIZE);   
   SystemExitCriticalSection(u8Status);
 }
 
@@ -428,6 +428,8 @@ static void ScrccSM_Wait(void)
     {
       
     }
+    
+    Scrcc_reset_rx_buffer();
   }
   else
   {
