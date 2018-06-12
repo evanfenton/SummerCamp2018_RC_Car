@@ -27,7 +27,14 @@ Constants / Definitions
 #define ANTTT_COMMAND_ID_MOVE_ACK       (u8)0xAC   
 #define ANTTT_COMMAND_ID_MOVE_NACK      (u8)0xBC   
 
+
+
 #define SCRCC_COMMAND_SIZE              (u8)8
+
+#define SCRCC_COMMAND_FORWARD           (u8)0x00
+#define SCRCC_COMMAND_BACKWARD          (u8)0x01
+#define SCRCC_COMMAND_LEFT              (u8)0x02
+#define SCRCC_COMMAND_RIGHT             (u8)0x03
 
 /**********************************************************************************************************************
 Type Definitions
@@ -61,6 +68,7 @@ void ScrccHandleIncomingMessage(u8* pu8Data_, u8 u8Length_);
 /*--------------------------------------------------------------------------------------------------------------------*/
 static bool AntttIsGameOver(void);
 static void Anttt_reset_rx_buffer(void);
+
 static void Scrcc_reset_rx_buffer(void);
 
 /*--------------------------------------------------------------------------------------------------------------------*/

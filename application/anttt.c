@@ -403,7 +403,31 @@ static void ScrccSM_Wait(void)
   // Check if module has established connection with client.
   if (G_u32BPEngenuicsFlags & _BPENGENUICS_CONNECTED)
   {
-    
+    // FORWARD
+    if(Scrcc_u8RxData[SCRCC_COMMAND_FORWARD] == 0xFF)
+    {
+      
+    }
+    // BACKWARD
+    else if(Scrcc_u8RxData[SCRCC_COMMAND_BACKWARD] == 0xFF)
+    {
+      
+    }
+    // LEFT
+    else if(Scrcc_u8RxData[SCRCC_COMMAND_LEFT] == 0xFF)
+    {
+      
+    }
+    // RIGHT
+    else if(Scrcc_u8RxData[SCRCC_COMMAND_RIGHT] == 0xFF)
+    {
+      
+    }
+    // STALLED
+    else
+    {
+      
+    }
   }
   else
   {
